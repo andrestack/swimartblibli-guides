@@ -1,0 +1,439 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#2878B8">
+<title>Plunge Pool Welcome Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;0,700;1,400&display=swap">
+<style>
+/* Layout: one brochure column (max 860px). Brand-blue cover with the yellow swoosh, white body panels, system diagram as the centrepiece, blue contact footer. Single deliberate light look, matching the printed Swimart Bli Bli flyers. */
+:root {
+  --swim: #2878B8;      /* Swimart brand blue */
+  --deep: #134A78;      /* headings, suction pipe */
+  --sun: #F7C935;       /* brand yellow */
+  --sun-soft: #FDF3CF;  /* yellow tint for the kit + call-us notes */
+  --foam: #EAF3FA;      /* blue-biased neutral panels */
+  --ink: #1C3346;       /* body text */
+  --muted: #4E6578;
+  --line: #C9DCEB;
+  --white: #FFFFFF;
+  --font: "Ubuntu", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--white); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font); text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); color: var(--deep); font-weight: 700; line-height: 1.15; }
+h3 { font-size: 1.15rem; color: var(--deep); font-weight: 700; line-height: 1.25; }
+p { margin: 0; }
+.lede { color: var(--muted); max-width: 62ch; }
+
+/* Cover */
+.cover { background: var(--swim); color: var(--white); position: relative; }
+.cover .wrap { padding-block: 44px 96px; }
+.brand { font-weight: 500; font-size: 1rem; color: var(--sun); }
+.cover h1 { font-size: clamp(2.6rem, 9vw, 4.6rem); line-height: 1; font-weight: 700; margin-top: 18px; letter-spacing: -0.01em; }
+.cover p { margin-top: 18px; font-size: 1.15rem; max-width: 46ch; color: #E6F1FA; }
+.swoosh { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 70px; display: block; }
+
+section { padding-block: 44px 8px; }
+section > .wrap { display: grid; gap: 18px; }
+
+/* Diagram */
+.diagram { background: var(--foam); border-radius: 18px; padding: 14px 10px 6px; overflow-x: auto; }
+.diagram svg { display: block; width: 100%; min-width: 640px; height: auto; }
+.diagram text { font-family: var(--font); fill: var(--ink); }
+.flow { fill: none; stroke: var(--white); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 16; animation: flow 1.6s linear infinite; }
+@keyframes flow { to { stroke-dashoffset: -18; } }
+@media (prefers-reduced-motion: reduce) { .flow { animation: none; } }
+.key { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 0.92rem; color: var(--muted); padding: 4px 6px 0; }
+.key span { display: inline-flex; align-items: center; gap: 8px; }
+.key i { width: 26px; height: 8px; border-radius: 4px; display: inline-block; }
+
+/* Equipment */
+.equip { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.item { border: 2px solid var(--line); border-radius: 16px; padding: 20px; display: grid; gap: 10px; align-content: start; }
+.item .model { font-size: 0.9rem; color: var(--swim); font-weight: 500; }
+.item ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+.item .you { border-top: 1px solid var(--line); padding-top: 10px; font-size: 0.95rem; }
+.item .you b { color: var(--deep); }
+.kit { background: var(--sun-soft); border-radius: 16px; padding: 20px; display: grid; gap: 10px; }
+.kit ul { margin: 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.kit li { background: var(--white); border: 1.5px solid var(--sun); border-radius: 999px; padding: 5px 14px; font-size: 0.95rem; }
+
+/* Routine */
+.routine { display: grid; gap: 0; border-top: 2px solid var(--deep); }
+.row { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.row .when { font-weight: 700; color: var(--swim); }
+.row ul { margin: 0; padding-left: 1.1em; display: grid; gap: 3px; }
+
+/* Water targets */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.97rem; }
+th, td { text-align: left; padding: 11px 12px; vertical-align: top; }
+thead th { background: var(--deep); color: var(--white); font-weight: 500; }
+thead th:first-child { border-top-left-radius: 10px; }
+thead th:last-child { border-top-right-radius: 10px; }
+tbody tr:nth-child(even) td { background: var(--foam); }
+td.target { font-weight: 700; color: var(--deep); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.note { font-size: 0.95rem; color: var(--muted); max-width: 66ch; }
+
+/* Cartridge steps */
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 2.2rem minmax(0, 1fr); gap: 10px; align-items: start; }
+.steps li::before { content: counter(s); width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--sun); color: var(--deep); font-weight: 700; display: grid; place-items: center; }
+
+/* Troubleshooting */
+.trouble { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.fault { background: var(--foam); border-radius: 16px; padding: 18px 20px; display: grid; gap: 8px; align-content: start; }
+.fault p { font-size: 0.96rem; }
+.fault .lbl { font-weight: 700; color: var(--swim); }
+.fault .call { background: var(--sun-soft); border-radius: 8px; padding: 6px 10px; font-size: 0.92rem; }
+
+.safety { border: 2px solid var(--deep); border-radius: 16px; padding: 20px; display: grid; gap: 8px; }
+.safety ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+
+/* Footer */
+footer { background: var(--swim); color: var(--white); margin-top: 48px; }
+footer .wrap { padding-block: 36px 40px; display: grid; gap: 10px; }
+footer h2 { color: var(--white); }
+.phone { font-size: clamp(2rem, 7vw, 3rem); font-weight: 700; color: var(--sun); user-select: all; font-variant-numeric: tabular-nums; }
+footer p { color: #E6F1FA; max-width: 60ch; }
+
+/* A4 print / PDF */
+@page { size: A4; margin: 12mm 0 14mm; }
+@page :first { margin-top: 0; }
+@media print {
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 10.5pt; line-height: 1.45; }
+  .wrap { max-width: none; padding-left: 14mm; padding-right: 14mm; }
+  .cover .wrap { padding-block: 16mm 22mm; }
+  .cover h1 { font-size: 40pt; }
+  section { padding-block: 7mm 0; }
+  section > .wrap { gap: 4mm; }
+  h2 { font-size: 19pt; break-after: avoid; }
+  .diagram svg { min-width: 0; }
+  .flow { animation: none; }
+  .item, .fault, .row, .kit, .safety, .diagram, .steps li, tr, .tablewrap { break-inside: avoid; }
+  #routine { break-before: page; }
+  footer { margin-top: 8mm; break-inside: avoid; }
+  footer .wrap { padding-block: 8mm; }
+  .phone { font-size: 26pt; }
+}
+@media (max-width: 640px) {
+  .equip, .trouble, .steps { grid-template-columns: minmax(0, 1fr); }
+  .row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .cover .wrap { padding-block: 32px 80px; }
+}
+
+.guide-nav { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+.guide-nav a { color: #FFFFFF; font-weight: 500; text-underline-offset: 3px; min-height: 44px; display: inline-flex; align-items: center; }
+.guide-nav a:focus-visible { outline: 3px solid #F7C935; outline-offset: 3px; }
+a.phone { text-decoration: none; display: inline-block; }
+@media print { .guide-nav { display: none; } }
+</style>
+</head>
+<body>
+<header class="cover">
+  <div class="wrap">
+    <nav class="guide-nav" aria-label="Guide"><a href="/">All guides</a><a href="/pdf/Plunge-Pool-Welcome-Guide.pdf">Download PDF</a></nav>
+    <div class="brand">Swimart Bli Bli</div>
+    <h1>Welcome to your plunge pool</h1>
+    <p>A quick guide to your Waterco system: how it works, what to look after, and what to do if something looks wrong.</p>
+  </div>
+  <svg class="swoosh" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 70 L0 52 C 300 70, 700 10, 1200 0 L1200 70 Z" fill="#F7C935"/>
+    <path d="M0 70 L0 62 C 320 74, 760 30, 1200 20 L1200 70 Z" fill="#FFFFFF"/>
+  </svg>
+</header>
+
+<main>
+<section id="system">
+  <div class="wrap">
+    <h2>How your system works</h2>
+    <p class="lede">Water leaves the pool through the skimmer, gets pushed through two stages of filtering, picks up fresh chlorine in the chlorinator cell, then returns to the pool. The whole loop runs whenever the pump is on.</p>
+    <div class="diagram" role="img" aria-label="Diagram: pool water flows from the skimmer to the Supastream 100 pump, through the MultiCyclone pre-filter and Trimline CC75 cartridge filter, through the Electrochlor cell, and back to the pool through the return jet.">
+      <svg viewBox="0 0 760 370" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7FC4EC"/>
+            <stop offset="1" stop-color="#2878B8"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Pool -->
+        <rect x="24" y="40" width="250" height="280" rx="20" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <rect x="34" y="50" width="230" height="260" rx="14" fill="url(#water)"/>
+        <path d="M54 120 q 20 -10 40 0 t 40 0 t 40 0 t 40 0" fill="none" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+        <path d="M74 160 q 20 -10 40 0 t 40 0 t 40 0" fill="none" stroke="#FFFFFF" stroke-opacity=".4" stroke-width="3" stroke-linecap="round"/>
+        <text x="149" y="215" text-anchor="middle" font-size="22" font-weight="700" style="fill:#FFFFFF">Plunge pool</text>
+
+        <!-- Pipes: return (top) and suction (bottom) -->
+        <path d="M290 282 H350" fill="none" stroke="#134A78" stroke-width="12" stroke-linecap="round"/>
+        <path d="M372 252 V232 H490" fill="none" stroke="#134A78" stroke-width="12" stroke-linejoin="round"/>
+        <path d="M536 196 H570" fill="none" stroke="#2878B8" stroke-width="12"/>
+        <path d="M615 160 V70 H300 V100 H278" fill="none" stroke="#2878B8" stroke-width="12" stroke-linejoin="round"/>
+        <!-- moving flow dots -->
+        <path class="flow" d="M290 282 H350"/>
+        <path class="flow" d="M372 252 V232 H490"/>
+        <path class="flow" d="M536 196 H570"/>
+        <path class="flow" d="M615 160 V70 H300 V100 H278"/>
+
+        <!-- Skimmer -->
+        <rect x="250" y="264" width="44" height="36" rx="6" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <rect x="258" y="272" width="28" height="20" rx="3" fill="#C9DCEB"/>
+        <text x="272" y="340" text-anchor="middle" font-size="14" font-weight="500">Skimmer</text>
+        <text x="272" y="356" text-anchor="middle" font-size="12" style="fill:#4E6578">basket</text>
+
+        <!-- Return jet -->
+        <circle cx="272" cy="100" r="9" fill="#FFFFFF" stroke="#2878B8" stroke-width="4"/>
+        <text x="210" y="32" text-anchor="middle" font-size="14" font-weight="500">Return jet</text>
+        <path d="M232 36 L262 88" stroke="#4E6578" stroke-width="1.5" fill="none"/>
+
+        <!-- Pump -->
+        <rect x="346" y="250" width="52" height="62" rx="12" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <rect x="354" y="258" width="36" height="22" rx="5" fill="#C9DCEB"/>
+        <rect x="398" y="260" width="62" height="44" rx="10" fill="#134A78"/>
+        <path d="M410 268 V296 M420 268 V296 M430 268 V296 M440 268 V296" stroke="#2878B8" stroke-width="3"/>
+        <text x="403" y="340" text-anchor="middle" font-size="14" font-weight="500">Supastream 100</text>
+        <text x="403" y="356" text-anchor="middle" font-size="12" style="fill:#4E6578">strainer basket</text>
+
+        <!-- MultiCyclone -->
+        <rect x="490" y="168" width="46" height="138" rx="12" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <rect x="496" y="250" width="34" height="50" rx="7" fill="#EAF3FA" stroke="#2878B8" stroke-width="2"/>
+        <path d="M501 290 q 12 -6 24 0" stroke="#8A7A4B" stroke-width="3" fill="none"/>
+        <path d="M503 196 c 10 -8 20 8 30 0 M503 214 c 10 -8 20 8 30 0" stroke="#2878B8" stroke-width="2" fill="none"/>
+        <rect x="506" y="306" width="14" height="10" rx="2" fill="#F7C935" stroke="#134A78" stroke-width="2"/>
+        <text x="513" y="340" text-anchor="middle" font-size="14" font-weight="500">MultiCyclone</text>
+        <text x="513" y="356" text-anchor="middle" font-size="12" style="fill:#4E6578">purge valve</text>
+
+        <!-- Trimline CC75 -->
+        <rect x="570" y="160" width="90" height="150" rx="14" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <path d="M588 182 V292 M600 182 V292 M612 182 V292 M624 182 V292 M636 182 V292 M648 182 V292" stroke="#C9DCEB" stroke-width="5"/>
+        <circle cx="646" cy="150" r="11" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <path d="M646 150 L652 144" stroke="#134A78" stroke-width="2.5" stroke-linecap="round"/>
+        <text x="662" y="166" font-size="12" style="fill:#4E6578">gauge</text>
+        <text x="615" y="340" text-anchor="middle" font-size="14" font-weight="500">Trimline CC75</text>
+        <text x="615" y="356" text-anchor="middle" font-size="12" style="fill:#4E6578">cartridge filter</text>
+
+        <!-- Electrochlor cell on the return riser -->
+        <rect x="601" y="88" width="28" height="56" rx="12" fill="#F7C935" stroke="#134A78" stroke-width="3"/>
+        <path d="M609 98 V134 M615 98 V134 M621 98 V134" stroke="#134A78" stroke-width="2"/>
+        <text x="592" y="112" text-anchor="end" font-size="14" font-weight="500">Electrochlor cell</text>
+        <text x="592" y="128" text-anchor="end" font-size="12" style="fill:#4E6578">makes chlorine</text>
+
+        <!-- Control box -->
+        <path d="M629 116 H676" stroke="#134A78" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+        <rect x="676" y="84" width="72" height="62" rx="8" fill="#134A78"/>
+        <rect x="684" y="92" width="56" height="22" rx="3" fill="#7FC4EC"/>
+        <text x="712" y="108" text-anchor="middle" font-size="12" font-weight="700" style="fill:#134A78">5500</text>
+        <circle cx="694" cy="130" r="5" fill="#F7C935"/>
+        <circle cx="712" cy="130" r="5" fill="#FFFFFF"/>
+        <circle cx="730" cy="130" r="5" fill="#FFFFFF"/>
+        <text x="748" y="72" text-anchor="end" font-size="14" font-weight="500">Electrochlor 2000</text>
+      </svg>
+      <div class="key">
+        <span><i style="background:#134A78"></i>Pool water to the pump</span>
+        <span><i style="background:#2878B8"></i>Filtered, chlorinated water back to the pool</span>
+        <span><i style="border:2px dashed #134A78;height:2px"></i>Control cable</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="equipment">
+  <div class="wrap">
+    <h2>Your equipment</h2>
+    <div class="equip">
+      <article class="item">
+        <div class="model">Waterco Supastream 100 · 1.0 hp pump</div>
+        <h3>The pump moves the water</h3>
+        <ul>
+          <li>Pulls water from the skimmer and pushes it through the filters and chlorinator.</li>
+          <li>The strainer basket under the clear lid catches leaves and hair before they reach the pump.</li>
+          <li>A secondary seal helps protect the motor from small leaks.</li>
+        </ul>
+        <p class="you"><b>Your job:</b> empty the strainer basket weekly. Never run the pump without water in it.</p>
+      </article>
+      <article class="item">
+        <div class="model">Waterco MultiCyclone pre-filter</div>
+        <h3>The cyclone spins out the grit</h3>
+        <ul>
+          <li>Water spins inside the cyclone and up to 80% of the dirt drops into the clear sediment chamber.</li>
+          <li>No media to clean, so your cartridge stays clean for much longer.</li>
+        </ul>
+        <p class="you"><b>Your job:</b> when you can see sediment in the chamber, open the purge valve for a few seconds with the pump running.</p>
+      </article>
+      <article class="item">
+        <div class="model">Waterco Trimline CC75 · 75 sq ft cartridge</div>
+        <h3>The cartridge polishes the water</h3>
+        <ul>
+          <li>A pleated polyester cartridge traps the fine particles the cyclone lets through.</li>
+          <li>The pressure gauge on top tells you when it needs a clean.</li>
+          <li>Hand lid lock and air relief valve make servicing tool-free.</li>
+        </ul>
+        <p class="you"><b>Your job:</b> write down the gauge reading after a clean. Hose the cartridge when it climbs about 50 kPa above that.</p>
+      </article>
+      <article class="item">
+        <div class="model">Waterco Electrochlor 2000 chlorinator</div>
+        <h3>The chlorinator keeps it clean</h3>
+        <ul>
+          <li>Turns dissolved salt or mineral into chlorine as water passes the cell.</li>
+          <li>Works best at 5,500 ppm, within a range of 4,000 to 6,000 ppm.</li>
+          <li>Only makes chlorine while the pump runs. In most installs the pump plugs into the chlorinator, so its timer sets the run time.</li>
+        </ul>
+        <p class="you"><b>Your job:</b> check the display each week and adjust output with the seasons. Ask us before adding salt.</p>
+      </article>
+    </div>
+    <div class="kit">
+      <h3>Your handover kit</h3>
+      <p>Everything you need to get started is in the box we left with you.</p>
+      <ul>
+        <li>Water test kit</li>
+        <li>Telescopic pole</li>
+        <li>Leaf scoop</li>
+        <li>Wall and floor brush</li>
+        <li>Starter chemicals</li>
+        <li>This guide</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="routine">
+  <div class="wrap">
+    <h2>Keep it running</h2>
+    <p class="lede">A plunge pool holds a small volume of water, so heat, rain and a few swimmers change the chemistry fast. Little and often works best.</p>
+    <div class="routine">
+      <div class="row">
+        <div class="when">Every few days</div>
+        <ul><li>Scoop out leaves and empty the skimmer basket.</li><li>Check the water sits halfway up the skimmer opening.</li></ul>
+      </div>
+      <div class="row">
+        <div class="when">Weekly</div>
+        <ul><li>Test chlorine and pH and adjust.</li><li>Empty the pump strainer basket.</li><li>Brush the walls, floor and steps.</li><li>Check the chlorinator display and the filter gauge.</li></ul>
+      </div>
+      <div class="row">
+        <div class="when">Monthly</div>
+        <ul><li>Purge the MultiCyclone sediment chamber.</li><li>Bring a water sample to Swimart Bli Bli for a full test.</li></ul>
+      </div>
+      <div class="row">
+        <div class="when">Each season</div>
+        <ul><li>Summer: run the pump 6 to 8 hours a day and raise chlorinator output.</li><li>Winter: 4 to 6 hours is usually enough.</li><li>Hose the cartridge, or sooner if the gauge says so.</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="targets">
+  <div class="wrap">
+    <h2>Water targets</h2>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Test</th><th>Aim for</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>Free chlorine</td><td class="target">1–3 ppm</td><td>Kills bacteria and algae. Below 1 ppm and the pool can turn in days.</td></tr>
+          <tr><td>pH</td><td class="target">7.2–7.6</td><td>Keeps chlorine working and stops stinging eyes and scale.</td></tr>
+          <tr><td>Total alkalinity</td><td class="target">80–120 ppm</td><td>Holds the pH steady so it doesn't swing.</td></tr>
+          <tr><td>Stabiliser</td><td class="target">30–50 ppm</td><td>Shields chlorine from the Sunshine Coast sun.</td></tr>
+          <tr><td>Calcium hardness</td><td class="target">200–300 ppm</td><td>Protects surfaces and equipment from etching or scaling.</td></tr>
+          <tr><td>Salt / mineral</td><td class="target">5,500 ppm</td><td>What the Electrochlor needs to make chlorine. Range 4,000–6,000 ppm.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">For a water sample, fill a clean bottle from elbow depth, away from the return jet, and bring it in within a few hours.</p>
+  </div>
+</section>
+
+<section id="cartridge">
+  <div class="wrap">
+    <h2>Cleaning the cartridge</h2>
+    <ol class="steps">
+      <li><span>Switch the pump off at the chlorinator or power point.</span></li>
+      <li><span>Open the air relief valve on top of the filter to release pressure.</span></li>
+      <li><span>Undo the hand lid lock and lift out the cartridge.</span></li>
+      <li><span>Hose between every pleat from top to bottom. Skip the pressure washer, it tears the fabric.</span></li>
+      <li><span>Check the lid O-ring is clean and seated, then refit the cartridge and lid.</span></li>
+      <li><span>Turn the pump on with the air relief valve open. Close it once a steady stream of water comes out.</span></li>
+      <li><span>Write down the new gauge reading. That's your clean reading.</span></li>
+    </ol>
+  </div>
+</section>
+
+<section id="troubleshooting">
+  <div class="wrap">
+    <h2>Quick troubleshooting</h2>
+    <div class="trouble">
+      <article class="fault">
+        <h3>Water is green or cloudy</h3>
+        <p><span class="lbl">Check:</span> chlorine level, pump run time, chlorinator display, filter gauge.</p>
+        <p><span class="lbl">Fix:</span> brush the pool, increase run time and chlorinator output, clean the cartridge if pressure is high.</p>
+        <p class="call">No better in 48 hours? Bring us a water sample.</p>
+      </article>
+      <article class="fault">
+        <h3>Pump runs but barely any water comes back</h3>
+        <p><span class="lbl">Check:</span> skimmer and strainer baskets, water level, filter gauge.</p>
+        <p><span class="lbl">Fix:</span> turn off, empty both baskets, top up to halfway up the skimmer opening, clean the cartridge if needed.</p>
+      </article>
+      <article class="fault">
+        <h3>Pump won't start or just hums</h3>
+        <p><span class="lbl">Check:</span> power at the outlet, the chlorinator timer, the safety switch in your meter box.</p>
+        <p><span class="lbl">Fix:</span> reset the timer or safety switch once.</p>
+        <p class="call">Trips again or keeps humming? Leave it off and call us.</p>
+      </article>
+      <article class="fault">
+        <h3>Air bubbles or spitting from the return jet</h3>
+        <p><span class="lbl">Check:</span> water level, pump lid seated, air trapped in the filter.</p>
+        <p><span class="lbl">Fix:</span> top up the pool, wet and reseat the pump lid O-ring, bleed the filter through the air relief valve.</p>
+      </article>
+      <article class="fault">
+        <h3>Chlorinator shows low salt or low output</h3>
+        <p><span class="lbl">Check:</span> salt / mineral reading, white scale on the cell plates.</p>
+        <p><span class="lbl">Fix:</span> test the level and ask us how much to add. A plunge pool needs far less than a full-size pool.</p>
+        <p class="call">Scale on the cell? Bring it in rather than scraping it.</p>
+      </article>
+      <article class="fault">
+        <h3>Stinging eyes or a strong chlorine smell</h3>
+        <p><span class="lbl">Check:</span> pH first, then chlorine.</p>
+        <p><span class="lbl">Fix:</span> bring pH back to 7.2–7.6. A strong smell usually means used-up chlorine, so bring in a sample.</p>
+      </article>
+      <article class="fault">
+        <h3>Filter pressure keeps climbing</h3>
+        <p><span class="lbl">Check:</span> MultiCyclone sediment chamber, cartridge condition.</p>
+        <p><span class="lbl">Fix:</span> purge the cyclone, then hose the cartridge. Pleats that are torn or stiff mean it's time for a new one.</p>
+      </article>
+      <article class="fault">
+        <h3>Water around the pump or filter</h3>
+        <p><span class="lbl">Check:</span> unions hand-tight, filter lid seated, drips under the pump motor.</p>
+        <p><span class="lbl">Fix:</span> hand-tighten loose unions.</p>
+        <p class="call">Dripping under the motor usually means a worn pump seal. Call us.</p>
+      </article>
+    </div>
+
+    <div class="safety">
+      <h3>Pool safety in Queensland</h3>
+      <ul>
+        <li>Keep the pool gate closed and latched. Never prop it open.</li>
+        <li>Keep the CPR sign up where it can be seen from the pool.</li>
+        <li>Keep chairs, pot plants and climbable items at least 900 mm from the fence.</li>
+        <li>Your pool must be listed on the Queensland pool safety register.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Need a hand?</h2>
+    <a class="phone" href="tel:+61753569448">(07) 5356 9448</a>
+    <p>Call the team at Swimart Bli Bli, or drop in with a water sample. We installed your system and we're happy to talk you through anything in this guide.</p>
+  </div>
+</footer>
+</body>
+</html>

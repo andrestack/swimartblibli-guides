@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#2878B8">
+<title>Heat Pump Owner's Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap">
+<style>
+/* Layout: one brochure column in the Swimart guide series. Blue cover with yellow swoosh, system diagram with heated return line, temperature dial strip, "what's normal" panel, code table, blue footer. Single deliberate light look for print. */
+:root {
+  --swim: #2878B8;
+  --deep: #134A78;
+  --sun: #F7C935;
+  --sun-soft: #FDF3CF;
+  --foam: #EAF3FA;
+  --ink: #1C3346;
+  --muted: #4E6578;
+  --line: #C9DCEB;
+  --white: #FFFFFF;
+  --heat: #E2702F;
+  --heat-soft: #FCE9DD;
+  --font: "Ubuntu", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--white); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font); text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); color: var(--deep); font-weight: 700; line-height: 1.15; }
+h3 { font-size: 1.12rem; color: var(--deep); font-weight: 700; line-height: 1.25; }
+p { margin: 0; }
+.lede { color: var(--muted); max-width: 62ch; }
+
+.cover { background: var(--swim); color: var(--white); position: relative; }
+.cover .wrap { padding-block: 44px 96px; }
+.brand { font-weight: 500; color: var(--sun); }
+.cover h1 { font-size: clamp(2.6rem, 9vw, 4.6rem); line-height: 1; font-weight: 700; margin-top: 18px; letter-spacing: -0.01em; }
+.cover p { margin-top: 18px; font-size: 1.15rem; max-width: 48ch; color: #E6F1FA; }
+.swoosh { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 70px; display: block; }
+
+section { padding-block: 44px 8px; }
+section > .wrap { display: grid; gap: 18px; }
+
+/* Diagram */
+.diagram { background: var(--foam); border-radius: 18px; padding: 14px 10px 6px; overflow-x: auto; }
+.diagram svg { display: block; width: 100%; min-width: 640px; height: auto; }
+.diagram text { font-family: var(--font); fill: var(--ink); }
+.flow { fill: none; stroke: var(--white); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 16; animation: flow 1.6s linear infinite; }
+@keyframes flow { to { stroke-dashoffset: -18; } }
+@media (prefers-reduced-motion: reduce) { .flow { animation: none; } }
+.key { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 0.92rem; color: var(--muted); padding: 4px 6px 0; }
+.key span { display: inline-flex; align-items: center; gap: 8px; }
+.key i { width: 26px; height: 8px; border-radius: 4px; display: inline-block; }
+
+/* Temperature strip */
+.dial { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.bar { position: relative; height: 54px; border-radius: 14px; background: linear-gradient(90deg, #7FC4EC 0%, #2878B8 38%, #F7C935 62%, #E2702F 100%); }
+.bar .mark { position: absolute; top: -6px; bottom: -6px; width: 3px; background: var(--deep); border-radius: 2px; }
+.bar .zone { position: absolute; top: 8px; bottom: 8px; border: 3px solid var(--white); border-radius: 10px; }
+.ticks { position: relative; height: 1.4em; font-size: 0.9rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ticks span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+.ticks span:first-child { transform: none; }
+.ticks span:last-child { transform: translateX(-100%); }
+.temps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.temp { border: 2px solid var(--line); border-radius: 16px; padding: 16px 18px; display: grid; gap: 6px; align-content: start; }
+.temp .v { font-size: 1.6rem; font-weight: 700; color: var(--deep); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.temp.best { border-color: var(--sun); background: var(--sun-soft); }
+
+/* Controller + money tips */
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.card { border: 2px solid var(--line); border-radius: 16px; padding: 20px; display: grid; gap: 10px; align-content: start; }
+.card ul { margin: 0; padding-left: 1.1em; display: grid; gap: 5px; }
+.tips { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; }
+.tips li { border-left: 4px solid var(--sun); padding: 2px 0 2px 12px; }
+.tips b { color: var(--deep); display: block; }
+
+/* Normal */
+.normal { background: var(--foam); border-radius: 18px; padding: 22px; display: grid; gap: 14px; }
+.normal .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; }
+.normal .grid div { display: grid; gap: 3px; }
+
+/* Care */
+.routine { display: grid; border-top: 2px solid var(--deep); }
+.row { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.row .when { font-weight: 700; color: var(--swim); }
+.row ul { margin: 0; padding-left: 1.1em; display: grid; gap: 3px; }
+
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.96rem; }
+th, td { text-align: left; padding: 10px 12px; vertical-align: top; }
+thead th { background: var(--deep); color: var(--white); font-weight: 500; }
+thead th:first-child { border-top-left-radius: 10px; }
+thead th:last-child { border-top-right-radius: 10px; }
+tbody tr:nth-child(even) td { background: var(--foam); }
+td.code, td.target { font-weight: 700; color: var(--deep); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.chem { display: grid; gap: 12px; }
+.note { font-size: 0.95rem; color: var(--muted); max-width: 66ch; }
+
+/* Troubleshooting */
+.trouble { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.fault { background: var(--foam); border-radius: 16px; padding: 18px 20px; display: grid; gap: 8px; align-content: start; }
+.fault p { font-size: 0.96rem; }
+.fault .lbl { font-weight: 700; color: var(--swim); }
+.fault .call { background: var(--sun-soft); border-radius: 8px; padding: 6px 10px; font-size: 0.92rem; }
+
+footer { background: var(--swim); color: var(--white); margin-top: 48px; }
+footer .wrap { padding-block: 36px 40px; display: grid; gap: 10px; }
+footer h2 { color: var(--white); }
+.phone { font-size: clamp(2rem, 7vw, 3rem); font-weight: 700; color: var(--sun); user-select: all; font-variant-numeric: tabular-nums; }
+footer p { color: #E6F1FA; max-width: 60ch; }
+
+@page { size: A4; margin: 12mm 0 14mm; }
+@page :first { margin-top: 0; }
+@media print {
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 10pt; line-height: 1.42; }
+  .wrap { max-width: none; padding-left: 14mm; padding-right: 14mm; }
+  .cover .wrap { padding-block: 14mm 20mm; }
+  .cover h1 { font-size: 40pt; }
+  section { padding-block: 6mm 0; }
+  section > .wrap { gap: 4mm; }
+  h2 { font-size: 19pt; break-after: avoid; }
+  .diagram svg { min-width: 0; }
+  .flow { animation: none; }
+  .diagram, .temp, .card, .normal, .row, .fault, tr, .tips li, .dial { break-inside: avoid; }
+  #temperature .wrap, #normal .wrap, #saving .wrap, .chem { break-inside: avoid; }
+  .fault { padding: 4mm; gap: 2mm; }
+  .card, .temp { padding: 3.5mm 4.5mm; gap: 2mm; }
+  .bar { height: 36px; }
+  .dial { gap: 2mm; }
+  #saving { padding-top: 4mm; }
+  .row { padding: 2.4mm 0; }
+  .normal .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3mm 5mm; }
+  .normal { padding: 5mm; gap: 3mm; }
+  footer { margin-top: 6mm; break-inside: avoid; }
+  #troubleshooting { break-before: page; }
+  footer .wrap { padding-block: 6mm; gap: 2mm; }
+  .phone { font-size: 26pt; }
+}
+@media (max-width: 640px) {
+  .cols, .tips, .temps, .trouble, .normal .grid { grid-template-columns: minmax(0, 1fr); }
+  .row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .cover .wrap { padding-block: 32px 80px; }
+}
+
+.guide-nav { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 20px; }
+.guide-nav a { color: #FFFFFF; font-weight: 500; text-underline-offset: 3px; min-height: 44px; display: inline-flex; align-items: center; }
+.guide-nav a:focus-visible { outline: 3px solid #F7C935; outline-offset: 3px; }
+a.phone { text-decoration: none; display: inline-block; }
+@media print { .guide-nav { display: none; } }
+</style>
+</head>
+<body>
+<header class="cover">
+  <div class="wrap">
+    <nav class="guide-nav" aria-label="Guide"><a href="/">All guides</a><a href="/pdf/Heat-Pump-Owners-Guide.pdf">Download PDF</a></nav>
+    <div class="brand">Swimart Bli Bli</div>
+    <h1>Your pool heat pump</h1>
+    <p>How your Waterco heat pump and AquaHeat 5 controller work together, how to set them, and how to keep heating costs down.</p>
+  </div>
+  <svg class="swoosh" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 70 L0 52 C 300 70, 700 10, 1200 0 L1200 70 Z" fill="#F7C935"/>
+    <path d="M0 70 L0 62 C 320 74, 760 30, 1200 20 L1200 70 Z" fill="#FFFFFF"/>
+  </svg>
+</header>
+
+<main>
+<section id="system">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="lede">A heat pump works like a reverse air conditioner. Its fan draws warm air across a coil, and that heat moves into the pool water as it passes through. It only heats while water is flowing, so the pool pump has to be running. Your AquaHeat 5 controller runs the pump when heat is needed, so the two work together.</p>
+    <div class="diagram" role="img" aria-label="Diagram: pool water flows from the skimmer to the pump, through the filter and the heat pump, then through the chlorinator cell and back to the pool. The controller connects to the pump and the heat pump.">
+      <svg viewBox="0 0 760 370" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7FC4EC"/>
+            <stop offset="1" stop-color="#2878B8"/>
+          </linearGradient>
+        </defs>
+        <!-- Pool -->
+        <rect x="24" y="40" width="230" height="280" rx="20" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <rect x="34" y="50" width="210" height="260" rx="14" fill="url(#water)"/>
+        <path d="M54 120 q 20 -10 40 0 t 40 0 t 40 0 t 40 0" fill="none" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+        <text x="139" y="215" text-anchor="middle" font-size="22" font-weight="700" style="fill:#FFFFFF">Pool</text>
+
+        <!-- Pipes -->
+        <path d="M274 282 H330" fill="none" stroke="#134A78" stroke-width="12" stroke-linecap="round"/>
+        <path d="M352 252 V232 H470" fill="none" stroke="#134A78" stroke-width="12" stroke-linejoin="round"/>
+        <path d="M530 200 H560" fill="none" stroke="#2878B8" stroke-width="12"/>
+        <path d="M700 150 V70 H290 V100 H262" fill="none" stroke="#E2702F" stroke-width="12" stroke-linejoin="round"/>
+        <path class="flow" d="M274 282 H330"/>
+        <path class="flow" d="M352 252 V232 H470"/>
+        <path class="flow" d="M530 200 H560"/>
+        <path class="flow" d="M700 150 V70 H290 V100 H262"/>
+
+        <!-- Skimmer -->
+        <rect x="232" y="264" width="44" height="36" rx="6" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <rect x="240" y="272" width="28" height="20" rx="3" fill="#C9DCEB"/>
+        <text x="254" y="340" text-anchor="middle" font-size="14" font-weight="500">Skimmer</text>
+
+        <!-- Return jet -->
+        <circle cx="256" cy="100" r="9" fill="#FFFFFF" stroke="#E2702F" stroke-width="4"/>
+        <text x="196" y="32" text-anchor="middle" font-size="14" font-weight="500">Warm water returns</text>
+        <path d="M222 36 L248 88" stroke="#4E6578" stroke-width="1.5" fill="none"/>
+
+        <!-- Pump -->
+        <rect x="326" y="250" width="52" height="62" rx="12" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <rect x="334" y="258" width="36" height="22" rx="5" fill="#C9DCEB"/>
+        <rect x="378" y="260" width="62" height="44" rx="10" fill="#134A78"/>
+        <path d="M390 268 V296 M400 268 V296 M410 268 V296 M420 268 V296" stroke="#2878B8" stroke-width="3"/>
+        <text x="383" y="340" text-anchor="middle" font-size="14" font-weight="500">Pool pump</text>
+
+        <!-- Filter -->
+        <rect x="470" y="168" width="60" height="138" rx="14" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <path d="M484 186 V290 M496 186 V290 M508 186 V290 M520 186 V290" stroke="#C9DCEB" stroke-width="5"/>
+        <text x="500" y="340" text-anchor="middle" font-size="14" font-weight="500">Filter</text>
+
+        <!-- Heat pump -->
+        <rect x="560" y="150" width="170" height="156" rx="12" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <circle cx="645" cy="230" r="50" fill="#EAF3FA" stroke="#134A78" stroke-width="3"/>
+        <path d="M645 230 L645 186 M645 230 L683 252 M645 230 L607 252" stroke="#2878B8" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="645" cy="230" r="8" fill="#134A78"/>
+        <path d="M572 166 H718" stroke="#C9DCEB" stroke-width="3" stroke-dasharray="6 5"/>
+        <text x="645" y="340" text-anchor="middle" font-size="14" font-weight="500">Waterco heat pump</text>
+        <text x="645" y="356" text-anchor="middle" font-size="12" style="fill:#4E6578">fan draws heat from the air</text>
+
+        <!-- Chlorinator cell on return -->
+        <rect x="400" y="58" width="72" height="24" rx="12" fill="#F7C935" stroke="#134A78" stroke-width="3"/>
+        <text x="436" y="48" text-anchor="middle" font-size="14" font-weight="500">Chlorinator cell</text>
+        <text x="560" y="58" text-anchor="middle" font-size="12" style="fill:#4E6578">fitted after the heat pump</text>
+
+        <!-- Controller -->
+        <rect x="486" y="94" width="130" height="44" rx="8" fill="#134A78"/>
+        <rect x="494" y="102" width="44" height="28" rx="3" fill="#7FC4EC"/>
+        <text x="516" y="121" text-anchor="middle" font-size="13" font-weight="700" style="fill:#134A78">28°</text>
+        <text x="578" y="121" text-anchor="middle" font-size="13" font-weight="700" style="fill:#FFFFFF">AquaHeat 5</text>
+        <path d="M616 116 H645 V150" stroke="#134A78" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+        <path d="M486 116 H409 V260" stroke="#134A78" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+      </svg>
+      <div class="key">
+        <span><i style="background:#134A78"></i>Pool water to the pump</span>
+        <span><i style="background:#2878B8"></i>Filtered water</span>
+        <span><i style="background:#E2702F"></i>Heated water back to the pool</span>
+        <span><i style="border:2px dashed #134A78;height:2px"></i>Controller wiring</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="controller">
+  <div class="wrap">
+    <div class="cols">
+      <div class="card">
+        <h3>What your AquaHeat 5 does</h3>
+        <ul>
+          <li>Runs the pump during the heating times you set on its timeclock.</li>
+          <li>Only sends water through the heat pump while the pool is below your set temperature, then checks it again at set intervals.</li>
+          <li>1st HEAT brings the pool up to temperature once, then goes back to the normal timeclock.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Setting it up</h3>
+        <ul>
+          <li>Set the heating hours for the warmest part of the day, around 10 am to 4 pm. Warm air means more heat for less power.</li>
+          <li>Run the pump 8 hours a day in winter and up to 12 in summer while heating.</li>
+          <li>Switch heating off when you're away for more than a few days.</li>
+          <li>Use 1st HEAT a few days before a weekend or a party to bring a cold pool up to temperature.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="temperature">
+  <div class="wrap">
+    <h2>Setting the temperature</h2>
+    <p class="lede">Every degree higher costs more to hold, so set it to what's comfortable rather than what's possible.</p>
+    <div class="dial" aria-hidden="true">
+      <div class="bar">
+        <div class="zone" style="left:44%; width:12%"></div>
+      </div>
+      <div class="ticks"><span style="left:0%">15°C</span><span style="left:20%">20°C</span><span style="left:40%">25°C</span><span style="left:60%">30°C</span><span style="left:80%">35°C</span><span style="left:100%">40°C</span></div>
+    </div>
+    <div class="temps">
+      <div class="temp"><span class="v">15–25°C</span><h3>Cooling</h3><p>On heat/cool models, cooling mode can take the edge off the water in a hot Queensland summer.</p></div>
+      <div class="temp best"><span class="v">26–29°C</span><h3>Comfortable swimming</h3><p>Where most owners settle. Start at 27°C and adjust a degree at a time.</p></div>
+      <div class="temp"><span class="v">up to 40°C</span><h3>Maximum heating</h3><p>Possible, but costly to hold in an open pool. Best kept for short spa-style sessions.</p></div>
+    </div>
+    <p class="note">From cold, a heat pump takes a couple of days to bring the pool up to temperature. It's slower than gas but costs far less to run. Start heating a few days before you need it.</p>
+  </div>
+</section>
+
+<section id="saving">
+  <div class="wrap">
+    <h2>Keep heating costs down</h2>
+    <ul class="tips">
+      <li><b>Use a pool cover</b>An uncovered pool loses two to three times more heat. Cover it every night and whenever it isn't in use.</li>
+      <li><b>Heat in daylight</b>The warmer the air, the less power the heat pump needs for the same heat.</li>
+      <li><b>Don't overshoot</b>Each degree above what you need adds to every bill.</li>
+      <li><b>Keep the air moving</b>Keep plants, furniture and stored items clear of the fan and the coil at the back.</li>
+      <li><b>Keep the filter clean</b>Good flow lets the heat pump transfer heat efficiently and avoids flow errors.</li>
+      <li><b>Leave it running</b>Holding a steady temperature uses less energy than reheating a cold pool every weekend.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="normal">
+  <div class="wrap">
+    <div class="normal">
+      <h2>This is normal</h2>
+      <div class="grid">
+        <div><h3>Water pooling under the unit</h3><p>That's condensation from the coil, and it can be 4 to 6 litres an hour on humid days. It isn't a leak.</p></div>
+        <div><h3>Cold air blowing out</h3><p>The heat has gone into your pool water. The air comes out several degrees cooler.</p></div>
+        <div><h3>Fan running but heating paused</h3><p>On cold mornings the unit defrosts its coil automatically. This takes 3 to 20 minutes, then heating resumes.</p></div>
+        <div><h3>A delay before it starts</h3><p>The compressor waits a few minutes after power-up or a mode change to protect itself.</p></div>
+        <div><h3>Pump runs for a few minutes, then stops</h3><p>Once the pool is warm, the AquaHeat 5 runs the pump briefly to check the water temperature, then stops again if no heat is needed.</p></div>
+        <div><h3>Temperature reading doesn't change</h3><p>Between checks, the controller shows the last accurate reading. It updates on the next check.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="care">
+  <div class="wrap">
+    <h2>Looking after it</h2>
+    <div class="routine">
+      <div class="row"><div class="when">Weekly</div><ul><li>Check the pool pump basket and filter. Low flow stops the heat pump.</li><li>Test pH and chlorine.</li></ul></div>
+      <div class="row"><div class="when">Monthly</div><ul><li>Rinse the unit with fresh water from a garden hose. Salt air on the Sunshine Coast corrodes the coil fins.</li><li>Clear leaves from around the unit and check the drain holes in the base are clear.</li></ul></div>
+      <div class="row"><div class="when">As needed</div><ul><li>Clean the coil with a soft brush and gentle hose. Never use a pressure washer, it bends the aluminium fins.</li><li>Wipe the cabinet with mild soapy water. No solvents or scourers.</li></ul></div>
+    </div>
+    <div class="chem">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Keep water within</th><th>Range</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>pH</td><td class="target">7.2–7.6</td><td>Low pH attacks the titanium heat exchanger.</td></tr>
+          <tr><td>Chlorine</td><td class="target">2–5 ppm</td><td>Very high chlorine shortens the exchanger's life.</td></tr>
+          <tr><td>Total alkalinity</td><td class="target">80–150 ppm</td><td>Keeps pH stable.</td></tr>
+          <tr><td>Calcium hardness</td><td class="target">200–300 ppm</td><td>Too high and scale builds up inside the exchanger.</td></tr>
+          <tr><td>Salt (salt pools)</td><td class="target">4,000–6,000 ppm</td><td>Within the unit's rated range.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Waterco may void the heat pump warranty if water is kept outside these ranges. Bring in a sample monthly and we'll check it for you.</p>
+    </div>
+  </div>
+</section>
+
+<section id="troubleshooting">
+  <div class="wrap">
+    <h2>Quick troubleshooting</h2>
+    <div class="trouble">
+      <article class="fault">
+        <h3>Not heating at all</h3>
+        <p><span class="lbl">Check:</span> the pool pump is running, the AquaHeat 5 is inside a heating time, its set temperature is above the water temperature.</p>
+        <p><span class="lbl">Fix:</span> adjust the AquaHeat 5 heating times or set temperature, and give the compressor a few minutes to start.</p>
+      </article>
+      <article class="fault">
+        <h3>Heating, but slowly</h3>
+        <p><span class="lbl">Check:</span> pool cover use, air temperature, a dirty coil or filter.</p>
+        <p><span class="lbl">Fix:</span> cover the pool, heat during the day and clean the coil and filter. Cold snaps slow every heat pump down.</p>
+      </article>
+      <article class="fault">
+        <h3>Display shows FL0 or E17</h3>
+        <p><span class="lbl">Meaning:</span> not enough water is flowing through the heat pump.</p>
+        <p><span class="lbl">Fix:</span> empty the pump basket, clean the filter, check the pool water level and that all valves are open.</p>
+      </article>
+      <article class="fault">
+        <h3>Display shows E19</h3>
+        <p><span class="lbl">Meaning:</span> the air is too cold for the unit to heat.</p>
+        <p><span class="lbl">Fix:</span> nothing to do. It restarts once the air warms up.</p>
+      </article>
+      <article class="fault">
+        <h3>Display shows P84, P85 or P86</h3>
+        <p><span class="lbl">Meaning:</span> the power supply voltage is too high or too low.</p>
+        <p class="call">Turn the unit off and have an electrician check the supply.</p>
+      </article>
+      <article class="fault">
+        <h3>Any other code, or it keeps tripping</h3>
+        <p><span class="lbl">Meaning:</span> most other codes are pressure, sensor or electronics faults that need a technician.</p>
+        <p class="call">Note the code, switch the unit off and call us.</p>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Need a hand?</h2>
+    <a class="phone" href="tel:+61753569448">(07) 5356 9448</a>
+    <p>Call the team at Swimart Bli Bli. We installed your heat pump and controller, and we're happy to help you fine-tune the settings.</p>
+  </div>
+</footer>
+</body>
+</html>

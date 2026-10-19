@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Swimart Bli Bli Pool Guides</title>
+<meta name="description" content="Owner guides from Swimart Bli Bli: plunge pool welcome guide, green pool recovery and heat pump care.">
+<meta name="theme-color" content="#2878B8">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap">
+<style>
+:root {
+  --swim: #2878B8;
+  --deep: #134A78;
+  --sun: #F7C935;
+  --ink: #1C3346;
+  --muted: #4E6578;
+  --white: #FFFFFF;
+  --font: "Ubuntu", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html { background: var(--swim); }
+body {
+  margin: 0; min-height: 100vh; background: var(--swim); color: var(--white);
+  font-family: var(--font); font-size: 16px; line-height: 1.5;
+  padding: max(28px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right)) max(28px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
+}
+.col { max-width: 520px; margin: 0 auto; display: grid; gap: 14px; }
+header { display: grid; gap: 6px; margin-bottom: 10px; }
+.brand { color: var(--sun); font-weight: 500; }
+h1 { margin: 0; font-size: clamp(2.1rem, 9vw, 2.8rem); line-height: 1.05; font-weight: 700; text-wrap: balance; }
+header p { margin: 4px 0 0; color: #E6F1FA; }
+.card { background: var(--white); color: var(--ink); border-radius: 18px; padding: 20px; display: grid; gap: 12px; }
+.card h2 { margin: 0; font-size: 1.3rem; color: var(--deep); line-height: 1.2; }
+.card p { margin: 0; color: var(--muted); font-size: 0.97rem; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn { display: inline-flex; align-items: center; min-height: 44px; padding: 0 18px; border-radius: 999px; background: var(--sun); color: var(--deep); font-weight: 700; text-decoration: none; }
+.pdf { display: inline-flex; align-items: center; min-height: 44px; padding: 0 6px; color: var(--swim); font-weight: 500; text-decoration: underline; text-underline-offset: 3px; }
+a:focus-visible { outline: 3px solid var(--deep); outline-offset: 3px; }
+footer { margin-top: 12px; display: grid; gap: 2px; }
+footer .lbl { color: #E6F1FA; }
+footer a { color: var(--sun); font-size: 1.6rem; font-weight: 700; text-decoration: none; font-variant-numeric: tabular-nums; }
+footer a:focus-visible { outline-color: var(--sun); }
+</style>
+</head>
+<body>
+<div class="col">
+  <header>
+    <div class="brand">Swimart Bli Bli</div>
+    <h1>Pool guides</h1>
+    <p>Quick, practical guides for looking after your pool and equipment.</p>
+  </header>
+
+  <article class="card">
+    <h2>Plunge pool welcome guide</h2>
+    <p>How your Waterco system works, the care routine, water targets and quick fixes.</p>
+    <div class="actions"><a class="btn" href="/plunge-pool">Open guide</a><a class="pdf" href="/pdf/Plunge-Pool-Welcome-Guide.pdf">PDF</a></div>
+  </article>
+
+  <article class="card">
+    <h2>Pool gone green?</h2>
+    <p>Step-by-step recovery, how much chlorine to use, and what to do about mustard algae.</p>
+    <div class="actions"><a class="btn" href="/green-pool">Open guide</a><a class="pdf" href="/pdf/Green-Pool-Recovery-Guide.pdf">PDF</a></div>
+  </article>
+
+  <article class="card">
+    <h2>Your pool heat pump</h2>
+    <p>Setting your Waterco heat pump and AquaHeat 5 controller, saving on running costs and error codes.</p>
+    <div class="actions"><a class="btn" href="/heat-pump">Open guide</a><a class="pdf" href="/pdf/Heat-Pump-Owners-Guide.pdf">PDF</a></div>
+  </article>
+
+  <footer>
+    <span class="lbl">Need a hand? Call the team</span>
+    <a href="tel:+61753569448">(07) 5356 9448</a>
+  </footer>
+</div>
+</body>
+</html>

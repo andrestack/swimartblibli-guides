@@ -1,0 +1,403 @@
+<title>Heat Pump Owner's Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap">
+<style>
+/* Layout: one brochure column in the Swimart guide series. Blue cover with yellow swoosh, system diagram with heated return line, temperature dial strip, "what's normal" panel, code table, blue footer. Single deliberate light look for print. */
+:root {
+  --swim: #2878B8;
+  --deep: #134A78;
+  --sun: #F7C935;
+  --sun-soft: #FDF3CF;
+  --foam: #EAF3FA;
+  --ink: #1C3346;
+  --muted: #4E6578;
+  --line: #C9DCEB;
+  --white: #FFFFFF;
+  --heat: #E2702F;
+  --heat-soft: #FCE9DD;
+  --font: "Ubuntu", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--swim); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.55; }
+.wrap { max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font); text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); color: var(--deep); font-weight: 700; line-height: 1.15; }
+h3 { font-size: 1.12rem; color: var(--deep); font-weight: 700; line-height: 1.25; }
+p { margin: 0; }
+.lede { color: var(--muted); max-width: 62ch; }
+
+.cover { background: var(--swim); color: var(--white); position: relative; }
+.cover .wrap { padding-block: 44px 96px; }
+.cover h1 { font-size: clamp(2.6rem, 9vw, 4.6rem); line-height: 1; font-weight: 700; margin-top: 18px; letter-spacing: -0.01em; }
+.cover p { margin-top: 18px; font-size: 1.15rem; max-width: 48ch; color: #E6F1FA; }
+.swoosh { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 70px; display: block; }
+
+section { padding-block: 44px 8px; }
+section > .wrap { display: grid; gap: 18px; }
+
+/* Diagram */
+.diagram { background: var(--foam); border-radius: 18px; padding: 14px 10px 6px; overflow-x: auto; }
+.diagram svg { display: block; width: 100%; min-width: 640px; height: auto; }
+.diagram text { font-family: var(--font); fill: var(--ink); }
+.flow { fill: none; stroke: var(--white); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 2 16; animation: flow 1.6s linear infinite; }
+@keyframes flow { to { stroke-dashoffset: -18; } }
+@media (prefers-reduced-motion: reduce) { .flow { animation: none; } }
+.key { display: flex; flex-wrap: wrap; gap: 8px 22px; font-size: 0.92rem; color: var(--muted); padding: 4px 6px 0; }
+.key span { display: inline-flex; align-items: center; gap: 8px; }
+.key i { width: 26px; height: 8px; border-radius: 4px; display: inline-block; }
+
+/* Temperature strip */
+.dial { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.bar { position: relative; height: 54px; border-radius: 14px; background: linear-gradient(90deg, #7FC4EC 0%, #2878B8 38%, #F7C935 62%, #E2702F 100%); }
+.bar .mark { position: absolute; top: -6px; bottom: -6px; width: 3px; background: var(--deep); border-radius: 2px; }
+.bar .zone { position: absolute; top: 8px; bottom: 8px; border: 3px solid var(--white); border-radius: 10px; }
+.ticks { position: relative; height: 1.4em; font-size: 0.9rem; color: var(--muted); font-variant-numeric: tabular-nums; }
+.ticks span { position: absolute; top: 0; transform: translateX(-50%); white-space: nowrap; }
+.ticks span:first-child { transform: none; }
+.ticks span:last-child { transform: translateX(-100%); }
+.temps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.temp { border: 2px solid var(--line); border-radius: 16px; padding: 16px 18px; display: grid; gap: 6px; align-content: start; }
+.temp .v { font-size: 1.6rem; font-weight: 700; color: var(--deep); font-variant-numeric: tabular-nums; line-height: 1.1; }
+.temp.best { border-color: var(--sun); background: var(--sun-soft); }
+
+/* Controller + money tips */
+.cols { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.card { border: 2px solid var(--line); border-radius: 16px; padding: 20px; display: grid; gap: 10px; align-content: start; }
+.card ul { margin: 0; padding-left: 1.1em; display: grid; gap: 5px; }
+.tips { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px 24px; }
+.tips li { border-left: 4px solid var(--sun); padding: 2px 0 2px 12px; }
+.tips b { color: var(--deep); display: block; }
+
+/* Normal */
+.normal { background: var(--foam); border-radius: 18px; padding: 22px; display: grid; gap: 14px; }
+.normal .grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px 24px; }
+.normal .grid div { display: grid; gap: 3px; }
+
+/* Care */
+.routine { display: grid; border-top: 2px solid var(--deep); }
+.row { display: grid; grid-template-columns: 9.5rem minmax(0, 1fr); gap: 16px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.row .when { font-weight: 700; color: var(--swim); }
+.row ul { margin: 0; padding-left: 1.1em; display: grid; gap: 3px; }
+
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.96rem; }
+th, td { text-align: left; padding: 10px 12px; vertical-align: top; }
+thead th { background: var(--deep); color: var(--white); font-weight: 500; }
+thead th:first-child { border-top-left-radius: 10px; }
+thead th:last-child { border-top-right-radius: 10px; }
+tbody tr:nth-child(even) td { background: var(--foam); }
+td.code, td.target { font-weight: 700; color: var(--deep); white-space: nowrap; font-variant-numeric: tabular-nums; }
+.chem { display: grid; gap: 12px; }
+.note { font-size: 0.95rem; color: var(--muted); max-width: 66ch; }
+
+/* Troubleshooting */
+.trouble { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.fault { background: var(--foam); border-radius: 16px; padding: 18px 20px; display: grid; gap: 8px; align-content: start; }
+.fault p { font-size: 0.96rem; }
+.fault .lbl { font-weight: 700; color: var(--swim); }
+.fault .call { background: var(--sun-soft); border-radius: 8px; padding: 6px 10px; font-size: 0.92rem; }
+
+main { background: var(--white); padding-bottom: 48px; }
+.cover-top { display: flex; justify-content: flex-end; }
+.logo { display: block; height: auto; max-width: 100%; }
+.cover-top .logo { width: 132px; }
+.foot-logo { width: 150px; }
+.shop { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; width: 100%; max-width: 560px; margin-top: 6px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.3); }
+.shop div { display: grid; gap: 2px; justify-items: center; }
+.shop span { color: #E6F1FA; }
+.shop .lbl { color: var(--sun); font-weight: 700; }
+footer { background: var(--swim); color: var(--white); }
+footer .wrap { padding-block: 36px 44px; display: grid; gap: 12px; justify-items: center; text-align: center; }
+footer h2 { color: var(--white); }
+.phone { font-size: clamp(2rem, 7vw, 3rem); font-weight: 700; color: var(--sun); user-select: all; font-variant-numeric: tabular-nums; }
+footer p { color: #E6F1FA; max-width: 60ch; margin-inline: auto; }
+
+@page { size: A4; margin: 12mm 0 14mm; }
+@page :first { margin-top: 0; }
+@media print {
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 10pt; line-height: 1.42; }
+  .wrap { max-width: none; padding-left: 14mm; padding-right: 14mm; }
+  .cover .wrap { padding-block: 14mm 20mm; }
+  .cover h1 { font-size: 40pt; }
+  section { padding-block: 6mm 0; }
+  section > .wrap { gap: 4mm; }
+  h2 { font-size: 19pt; break-after: avoid; }
+  .diagram svg { min-width: 0; }
+  .flow { animation: none; }
+  .diagram, .temp, .card, .normal, .row, .fault, tr, .tips li, .dial { break-inside: avoid; }
+  #temperature .wrap, #normal .wrap, #saving .wrap, .chem { break-inside: avoid; }
+  .fault { padding: 4mm; gap: 2mm; }
+  .card, .temp { padding: 3.5mm 4.5mm; gap: 2mm; }
+  .bar { height: 36px; }
+  .dial { gap: 2mm; }
+  #saving { padding-top: 4mm; }
+  .row { padding: 2.4mm 0; }
+  .normal .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 3mm 5mm; }
+  .normal { padding: 5mm; gap: 3mm; }
+  body { background: var(--white); }
+  main { padding-bottom: 6mm; }
+  .cover-top .logo { width: 34mm; }
+  .foot-logo { width: 24mm; }
+  .shop { padding-top: 2mm; margin-top: 0; gap: 1.5mm; font-size: 9pt; line-height: 1.35; }
+  footer p { max-width: none; font-size: 9.5pt; }
+  footer { margin-top: 0; break-inside: avoid; }
+  #troubleshooting { break-before: page; }
+  footer .wrap { padding-block: 5mm; gap: 1.5mm; }
+  .phone { font-size: 22pt; line-height: 1.1; }
+}
+@media (max-width: 640px) {
+  .cols, .tips, .temps, .trouble, .normal .grid { grid-template-columns: minmax(0, 1fr); }
+  .row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .cover .wrap { padding-block: 32px 80px; }
+}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <div class="cover-top"><img class="logo" src="data:image/png;base64,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" alt="Swimart Bli Bli" width="202" height="100"></div>
+    <h1>Your pool heat pump</h1>
+    <p>How your Waterco heat pump and AquaHeat 5 controller work together, how to set them, and how to keep heating costs down.</p>
+  </div>
+  <svg class="swoosh" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 70 L0 52 C 300 70, 700 10, 1200 0 L1200 70 Z" fill="#F7C935"/>
+    <path d="M0 70 L0 62 C 320 74, 760 30, 1200 20 L1200 70 Z" fill="#FFFFFF"/>
+  </svg>
+</header>
+
+<main>
+<section id="system">
+  <div class="wrap">
+    <h2>How it works</h2>
+    <p class="lede">A heat pump works like a reverse air conditioner. Its fan draws warm air across a coil, and that heat moves into the pool water as it passes through. It only heats while water is flowing, so the pool pump has to be running. Your AquaHeat 5 controller runs the pump when heat is needed, so the two work together.</p>
+    <div class="diagram" role="img" aria-label="Diagram: pool water flows from the skimmer to the pump, through the filter and the heat pump, then through the chlorinator cell and back to the pool. The controller connects to the pump and the heat pump.">
+      <svg viewBox="0 0 760 370" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="water" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7FC4EC"/>
+            <stop offset="1" stop-color="#2878B8"/>
+          </linearGradient>
+        </defs>
+        <!-- Pool -->
+        <rect x="24" y="40" width="230" height="280" rx="20" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <rect x="34" y="50" width="210" height="260" rx="14" fill="url(#water)"/>
+        <path d="M54 120 q 20 -10 40 0 t 40 0 t 40 0 t 40 0" fill="none" stroke="#FFFFFF" stroke-opacity=".55" stroke-width="3" stroke-linecap="round"/>
+        <text x="139" y="215" text-anchor="middle" font-size="22" font-weight="700" style="fill:#FFFFFF">Pool</text>
+
+        <!-- Pipes -->
+        <path d="M274 282 H330" fill="none" stroke="#134A78" stroke-width="12" stroke-linecap="round"/>
+        <path d="M352 252 V232 H470" fill="none" stroke="#134A78" stroke-width="12" stroke-linejoin="round"/>
+        <path d="M530 200 H560" fill="none" stroke="#2878B8" stroke-width="12"/>
+        <path d="M700 150 V70 H290 V100 H262" fill="none" stroke="#E2702F" stroke-width="12" stroke-linejoin="round"/>
+        <path class="flow" d="M274 282 H330"/>
+        <path class="flow" d="M352 252 V232 H470"/>
+        <path class="flow" d="M530 200 H560"/>
+        <path class="flow" d="M700 150 V70 H290 V100 H262"/>
+
+        <!-- Skimmer -->
+        <rect x="232" y="264" width="44" height="36" rx="6" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <rect x="240" y="272" width="28" height="20" rx="3" fill="#C9DCEB"/>
+        <text x="254" y="340" text-anchor="middle" font-size="14" font-weight="500">Skimmer</text>
+
+        <!-- Return jet -->
+        <circle cx="256" cy="100" r="9" fill="#FFFFFF" stroke="#E2702F" stroke-width="4"/>
+        <text x="196" y="32" text-anchor="middle" font-size="14" font-weight="500">Warm water returns</text>
+        <path d="M222 36 L248 88" stroke="#4E6578" stroke-width="1.5" fill="none"/>
+
+        <!-- Pump -->
+        <rect x="326" y="250" width="52" height="62" rx="12" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <rect x="334" y="258" width="36" height="22" rx="5" fill="#C9DCEB"/>
+        <rect x="378" y="260" width="62" height="44" rx="10" fill="#134A78"/>
+        <path d="M390 268 V296 M400 268 V296 M410 268 V296 M420 268 V296" stroke="#2878B8" stroke-width="3"/>
+        <text x="383" y="340" text-anchor="middle" font-size="14" font-weight="500">Pool pump</text>
+
+        <!-- Filter -->
+        <rect x="470" y="168" width="60" height="138" rx="14" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <path d="M484 186 V290 M496 186 V290 M508 186 V290 M520 186 V290" stroke="#C9DCEB" stroke-width="5"/>
+        <text x="500" y="340" text-anchor="middle" font-size="14" font-weight="500">Filter</text>
+
+        <!-- Heat pump -->
+        <rect x="560" y="150" width="170" height="156" rx="12" fill="#FFFFFF" stroke="#134A78" stroke-width="3"/>
+        <circle cx="645" cy="230" r="50" fill="#EAF3FA" stroke="#134A78" stroke-width="3"/>
+        <path d="M645 230 L645 186 M645 230 L683 252 M645 230 L607 252" stroke="#2878B8" stroke-width="10" stroke-linecap="round"/>
+        <circle cx="645" cy="230" r="8" fill="#134A78"/>
+        <path d="M572 166 H718" stroke="#C9DCEB" stroke-width="3" stroke-dasharray="6 5"/>
+        <text x="645" y="340" text-anchor="middle" font-size="14" font-weight="500">Waterco heat pump</text>
+        <text x="645" y="356" text-anchor="middle" font-size="12" style="fill:#4E6578">fan draws heat from the air</text>
+
+        <!-- Chlorinator cell on return -->
+        <rect x="400" y="58" width="72" height="24" rx="12" fill="#F7C935" stroke="#134A78" stroke-width="3"/>
+        <text x="436" y="48" text-anchor="middle" font-size="14" font-weight="500">Chlorinator cell</text>
+        <text x="560" y="58" text-anchor="middle" font-size="12" style="fill:#4E6578">fitted after the heat pump</text>
+
+        <!-- Controller -->
+        <rect x="486" y="94" width="130" height="44" rx="8" fill="#134A78"/>
+        <rect x="494" y="102" width="44" height="28" rx="3" fill="#7FC4EC"/>
+        <text x="516" y="121" text-anchor="middle" font-size="13" font-weight="700" style="fill:#134A78">28°</text>
+        <text x="578" y="121" text-anchor="middle" font-size="13" font-weight="700" style="fill:#FFFFFF">AquaHeat 5</text>
+        <path d="M616 116 H645 V150" stroke="#134A78" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+        <path d="M486 116 H409 V260" stroke="#134A78" stroke-width="2" stroke-dasharray="4 4" fill="none"/>
+      </svg>
+      <div class="key">
+        <span><i style="background:#134A78"></i>Pool water to the pump</span>
+        <span><i style="background:#2878B8"></i>Filtered water</span>
+        <span><i style="background:#E2702F"></i>Heated water back to the pool</span>
+        <span><i style="border:2px dashed #134A78;height:2px"></i>Controller wiring</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="controller">
+  <div class="wrap">
+    <div class="cols">
+      <div class="card">
+        <h3>What your AquaHeat 5 does</h3>
+        <ul>
+          <li>Runs the pump during the heating times you set on its timeclock.</li>
+          <li>Only sends water through the heat pump while the pool is below your set temperature, then checks it again at set intervals.</li>
+          <li>1st HEAT brings the pool up to temperature once, then goes back to the normal timeclock.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Setting it up</h3>
+        <ul>
+          <li>Set the heating hours for the warmest part of the day, around 10 am to 4 pm. Warm air means more heat for less power.</li>
+          <li>Run the pump 8 hours a day in winter and up to 12 in summer while heating.</li>
+          <li>Switch heating off when you're away for more than a few days.</li>
+          <li>Use 1st HEAT a few days before a weekend or a party to bring a cold pool up to temperature.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="temperature">
+  <div class="wrap">
+    <h2>Setting the temperature</h2>
+    <p class="lede">Every degree higher costs more to hold, so set it to what's comfortable rather than what's possible.</p>
+    <div class="dial" aria-hidden="true">
+      <div class="bar">
+        <div class="zone" style="left:44%; width:12%"></div>
+      </div>
+      <div class="ticks"><span style="left:0%">15°C</span><span style="left:20%">20°C</span><span style="left:40%">25°C</span><span style="left:60%">30°C</span><span style="left:80%">35°C</span><span style="left:100%">40°C</span></div>
+    </div>
+    <div class="temps">
+      <div class="temp"><span class="v">15–25°C</span><h3>Cooling</h3><p>On heat/cool models, cooling mode can take the edge off the water in a hot Queensland summer.</p></div>
+      <div class="temp best"><span class="v">26–29°C</span><h3>Comfortable swimming</h3><p>Where most owners settle. Start at 27°C and adjust a degree at a time.</p></div>
+      <div class="temp"><span class="v">up to 40°C</span><h3>Maximum heating</h3><p>Possible, but costly to hold in an open pool. Best kept for short spa-style sessions.</p></div>
+    </div>
+    <p class="note">From cold, a heat pump takes a couple of days to bring the pool up to temperature. It's slower than gas but costs far less to run. Start heating a few days before you need it.</p>
+  </div>
+</section>
+
+<section id="saving">
+  <div class="wrap">
+    <h2>Keep heating costs down</h2>
+    <ul class="tips">
+      <li><b>Use a pool cover</b>An uncovered pool loses two to three times more heat. Cover it every night and whenever it isn't in use.</li>
+      <li><b>Heat in daylight</b>The warmer the air, the less power the heat pump needs for the same heat.</li>
+      <li><b>Don't overshoot</b>Each degree above what you need adds to every bill.</li>
+      <li><b>Keep the air moving</b>Keep plants, furniture and stored items clear of the fan and the coil at the back.</li>
+      <li><b>Keep the filter clean</b>Good flow lets the heat pump transfer heat efficiently and avoids flow errors.</li>
+      <li><b>Leave it running</b>Holding a steady temperature uses less energy than reheating a cold pool every weekend.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="normal">
+  <div class="wrap">
+    <div class="normal">
+      <h2>This is normal</h2>
+      <div class="grid">
+        <div><h3>Water pooling under the unit</h3><p>That's condensation from the coil, and it can be 4 to 6 litres an hour on humid days. It isn't a leak.</p></div>
+        <div><h3>Cold air blowing out</h3><p>The heat has gone into your pool water. The air comes out several degrees cooler.</p></div>
+        <div><h3>Fan running but heating paused</h3><p>On cold mornings the unit defrosts its coil automatically. This takes 3 to 20 minutes, then heating resumes.</p></div>
+        <div><h3>A delay before it starts</h3><p>The compressor waits a few minutes after power-up or a mode change to protect itself.</p></div>
+        <div><h3>Pump runs for a few minutes, then stops</h3><p>Once the pool is warm, the AquaHeat 5 runs the pump briefly to check the water temperature, then stops again if no heat is needed.</p></div>
+        <div><h3>Temperature reading doesn't change</h3><p>Between checks, the controller shows the last accurate reading. It updates on the next check.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="care">
+  <div class="wrap">
+    <h2>Looking after it</h2>
+    <div class="routine">
+      <div class="row"><div class="when">Weekly</div><ul><li>Check the pool pump basket and filter. Low flow stops the heat pump.</li><li>Test pH and chlorine.</li></ul></div>
+      <div class="row"><div class="when">Monthly</div><ul><li>Rinse the unit with fresh water from a garden hose. Salt air on the Sunshine Coast corrodes the coil fins.</li><li>Clear leaves from around the unit and check the drain holes in the base are clear.</li></ul></div>
+      <div class="row"><div class="when">As needed</div><ul><li>Clean the coil with a soft brush and gentle hose. Never use a pressure washer, it bends the aluminium fins.</li><li>Wipe the cabinet with mild soapy water. No solvents or scourers.</li></ul></div>
+    </div>
+    <div class="chem">
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Keep water within</th><th>Range</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td>pH</td><td class="target">7.2–7.6</td><td>Low pH attacks the titanium heat exchanger.</td></tr>
+          <tr><td>Chlorine</td><td class="target">2–5 ppm</td><td>Very high chlorine shortens the exchanger's life.</td></tr>
+          <tr><td>Total alkalinity</td><td class="target">80–150 ppm</td><td>Keeps pH stable.</td></tr>
+          <tr><td>Calcium hardness</td><td class="target">200–300 ppm</td><td>Too high and scale builds up inside the exchanger.</td></tr>
+          <tr><td>Salt (salt pools)</td><td class="target">4,000–6,000 ppm</td><td>Within the unit's rated range.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Waterco may void the heat pump warranty if water is kept outside these ranges. Bring in a sample monthly and we'll check it for you.</p>
+    </div>
+  </div>
+</section>
+
+<section id="troubleshooting">
+  <div class="wrap">
+    <h2>Quick troubleshooting</h2>
+    <div class="trouble">
+      <article class="fault">
+        <h3>Not heating at all</h3>
+        <p><span class="lbl">Check:</span> the pool pump is running, the AquaHeat 5 is inside a heating time, its set temperature is above the water temperature.</p>
+        <p><span class="lbl">Fix:</span> adjust the AquaHeat 5 heating times or set temperature, and give the compressor a few minutes to start.</p>
+      </article>
+      <article class="fault">
+        <h3>Heating, but slowly</h3>
+        <p><span class="lbl">Check:</span> pool cover use, air temperature, a dirty coil or filter.</p>
+        <p><span class="lbl">Fix:</span> cover the pool, heat during the day and clean the coil and filter. Cold snaps slow every heat pump down.</p>
+      </article>
+      <article class="fault">
+        <h3>Display shows FL0 or E17</h3>
+        <p><span class="lbl">Meaning:</span> not enough water is flowing through the heat pump.</p>
+        <p><span class="lbl">Fix:</span> empty the pump basket, clean the filter, check the pool water level and that all valves are open.</p>
+      </article>
+      <article class="fault">
+        <h3>Display shows E19</h3>
+        <p><span class="lbl">Meaning:</span> the air is too cold for the unit to heat.</p>
+        <p><span class="lbl">Fix:</span> nothing to do. It restarts once the air warms up.</p>
+      </article>
+      <article class="fault">
+        <h3>Display shows P84, P85 or P86</h3>
+        <p><span class="lbl">Meaning:</span> the power supply voltage is too high or too low.</p>
+        <p class="call">Turn the unit off and have an electrician check the supply.</p>
+      </article>
+      <article class="fault">
+        <h3>Any other code, or it keeps tripping</h3>
+        <p><span class="lbl">Meaning:</span> most other codes are pressure, sensor or electronics faults that need a technician.</p>
+        <p class="call">Note the code, switch the unit off and call us.</p>
+      </article>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Need a hand?</h2>
+    <img class="logo foot-logo" src="data:image/png;base64,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" alt="Swimart Bli Bli" width="202" height="100">
+    <div class="phone">(07) 5356 9448</div>
+    <p>Call the team at Swimart Bli Bli. We installed your heat pump and controller, and we're happy to help you fine-tune the settings.</p>
+    <div class="shop">
+      <div><span class="lbl">Visit us</span><span>1/311 David Low Way<br>Bli Bli QLD 4560</span></div>
+      <div><span class="lbl">Shop hours</span><span>Mon–Fri 9:00 am – 4:30 pm<br>Sat 8:30 am – 12:30 pm</span></div>
+    </div>
+  </div>
+</footer>

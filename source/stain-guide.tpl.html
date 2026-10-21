@@ -1,0 +1,464 @@
+<title>Pool Stain Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&display=swap">
+<style>
+/* Layout: one brochure column in the Swimart guide series. Blue cover with yellow swoosh, stain cards drawn as surface swatches, a product chooser table, numbered treatment steps, blue footer. Single deliberate light look for print. */
+:root {
+  --swim: #2878B8;
+  --deep: #134A78;
+  --sun: #F7C935;
+  --sun-soft: #FDF3CF;
+  --foam: #EAF3FA;
+  --ink: #1C3346;
+  --muted: #4E6578;
+  --line: #C9DCEB;
+  --white: #FFFFFF;
+  --alert: #B4321E;
+  --alert-soft: #FBE7E2;
+  --surface: #EEF0EC;
+  --organic: #6E5A2C;
+  --iron: #A4542A;
+  --copper: #2F8C86;
+  --scale: #FAFAF6;
+  --font: "Ubuntu", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--swim); color: var(--ink); font-family: var(--font); font-size: 16px; line-height: 1.55; }
+main { background: var(--white); padding-bottom: 48px; }
+.wrap { max-width: 860px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--font); text-wrap: balance; margin: 0; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.1rem); color: var(--deep); font-weight: 700; line-height: 1.15; }
+h3 { font-size: 1.12rem; color: var(--deep); font-weight: 700; line-height: 1.25; }
+p { margin: 0; }
+.lede { color: var(--muted); max-width: 62ch; }
+.note { font-size: 0.95rem; color: var(--muted); max-width: 66ch; }
+
+.cover { background: var(--swim); color: var(--white); position: relative; }
+.cover .wrap { padding-block: 44px 96px; }
+.cover-top { display: flex; justify-content: flex-end; }
+.logo { display: block; height: auto; max-width: 100%; }
+.cover-top .logo { width: 132px; }
+.cover h1 { font-size: clamp(2.6rem, 9vw, 4.6rem); line-height: 1; font-weight: 700; margin-top: 18px; letter-spacing: -0.01em; }
+.cover p { margin-top: 18px; font-size: 1.15rem; max-width: 50ch; color: #E6F1FA; }
+.cover .pill { display: inline-block; margin-top: 20px; background: var(--sun); color: var(--deep); font-weight: 700; padding: 8px 16px; border-radius: 999px; }
+.swoosh { position: absolute; left: 0; right: 0; bottom: -1px; width: 100%; height: 70px; display: block; }
+
+section { padding-block: 44px 8px; }
+section > .wrap { display: grid; gap: 18px; }
+
+/* Stain cards: a patch of pool surface with the stain on it */
+.stains { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.stain { border: 2px solid var(--line); border-radius: 16px; overflow: hidden; display: grid; grid-template-rows: auto 1fr; }
+.patch { height: 96px; background-color: var(--surface);
+  background-image: radial-gradient(circle at 20% 30%, rgba(0,0,0,.05) 0 2px, transparent 3px), radial-gradient(circle at 70% 60%, rgba(0,0,0,.04) 0 2px, transparent 3px), radial-gradient(circle at 45% 80%, rgba(0,0,0,.05) 0 1.5px, transparent 2.5px);
+  background-size: 22px 22px, 31px 31px, 17px 17px; position: relative; }
+.patch::before, .patch::after { content: ""; position: absolute; border-radius: 50%; }
+.organic .patch::before { left: 14%; top: 18%; width: 46%; height: 62%; background: radial-gradient(ellipse at center, rgba(110,90,44,.75), rgba(110,90,44,.35) 55%, transparent 72%); }
+.organic .patch::after { left: 58%; top: 34%; width: 26%; height: 44%; background: radial-gradient(ellipse at center, rgba(90,110,40,.6), transparent 70%); }
+.iron .patch::before { left: 8%; top: 8%; width: 84%; height: 84%; background: radial-gradient(ellipse at 40% 50%, rgba(164,84,42,.7), rgba(164,84,42,.28) 50%, transparent 72%); }
+.iron .patch::after { left: 66%; top: 20%; width: 14%; height: 26%; background: radial-gradient(circle, rgba(130,60,30,.85), transparent 70%); }
+.copper .patch::before { left: 4%; top: 12%; width: 70%; height: 80%; background: radial-gradient(ellipse at center, rgba(47,140,134,.7), rgba(47,140,134,.3) 50%, transparent 72%); }
+.copper .patch::after { left: 60%; top: 26%; width: 30%; height: 54%; background: radial-gradient(ellipse at center, rgba(60,70,72,.6), transparent 70%); }
+.scale .patch { background-color: #DDE3E6; }
+.scale .patch::before { left: -6%; top: 0; width: 112%; height: 48%; border-radius: 0 0 50% 50%; background: repeating-radial-gradient(circle at 30% 10%, rgba(250,250,246,.95) 0 3px, rgba(235,235,228,.9) 3px 6px); }
+.stain .body { padding: 16px 18px 18px; display: grid; gap: 8px; align-content: start; }
+.stain dl { margin: 0; display: grid; grid-template-columns: 4.6rem minmax(0, 1fr); gap: 5px 10px; font-size: 0.95rem; }
+.stain dt { color: var(--muted); }
+.stain dd { margin: 0; }
+.clue { margin-top: 4px; background: var(--foam); border-radius: 8px; padding: 6px 10px; font-size: 0.92rem; }
+.clue b { color: var(--deep); }
+
+/* Home test */
+.test { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; counter-reset: t; }
+.test > div { counter-increment: t; background: var(--foam); border-radius: 16px; padding: 18px; display: grid; gap: 8px; align-content: start; }
+.test > div::before { content: counter(t); width: 2.2rem; height: 2.2rem; border-radius: 50%; background: var(--sun); color: var(--deep); font-weight: 700; display: grid; place-items: center; }
+.test .result { font-size: 0.93rem; color: var(--muted); }
+.test .result b { color: var(--deep); }
+.bring { background: var(--sun-soft); border-radius: 16px; padding: 16px 20px; display: grid; gap: 4px; }
+
+/* Chooser table */
+.tablewrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 0.96rem; }
+th, td { text-align: left; padding: 10px 12px; vertical-align: top; }
+thead th { background: var(--deep); color: var(--white); font-weight: 500; }
+thead th:first-child { border-top-left-radius: 10px; }
+thead th:last-child { border-top-right-radius: 10px; }
+tbody tr:nth-child(even) td { background: var(--foam); }
+td.prod { font-weight: 700; color: var(--deep); }
+td.yes { font-weight: 700; color: var(--deep); }
+td.no { color: #9AAAB8; }
+td.num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+/* Product cards */
+.products { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.prod-card { border: 2px solid var(--line); border-radius: 16px; padding: 18px 20px; display: grid; gap: 10px; align-content: start; }
+.prod-card .for { font-size: 0.9rem; color: var(--swim); font-weight: 500; }
+.prod-card ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: 0.96rem; }
+.prod-card .tip { background: var(--sun-soft); border-radius: 8px; padding: 6px 10px; font-size: 0.92rem; }
+.prod-card.wide { grid-column: 1 / -1; }
+.keep { display: grid; gap: 18px; }
+.doses { display: grid; gap: 10px; align-content: start; }
+.doses h3 { margin-bottom: 2px; }
+
+/* Steps */
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; border-top: 2px solid var(--deep); }
+.steps li { counter-increment: s; display: grid; grid-template-columns: 2.6rem minmax(0, 1fr); gap: 14px; padding: 13px 0; border-bottom: 1px solid var(--line); }
+.steps li::before { content: counter(s); width: 2.4rem; height: 2.4rem; border-radius: 50%; background: var(--sun); color: var(--deep); font-weight: 700; font-size: 1.1rem; display: grid; place-items: center; }
+.steps h3 { margin-bottom: 3px; }
+.steps p { max-width: 66ch; }
+.steps .tip { margin-top: 6px; font-size: 0.93rem; color: var(--muted); }
+
+.safety { border: 2px solid var(--alert); background: var(--alert-soft); border-radius: 16px; padding: 18px 20px; display: grid; gap: 8px; }
+.safety h3 { color: var(--alert); }
+.safety ul, .panel ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+
+.pair { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.panel { border-radius: 16px; padding: 18px 20px; display: grid; gap: 8px; align-content: start; }
+.panel.copperbox { background: #E3F2F0; border: 2px solid var(--copper); }
+.panel.copperbox h3 { color: #1E6560; }
+.panel.organicbox { background: #F3EFE4; border: 2px solid #B9A77A; }
+.panel.organicbox h3 { color: #5A4A22; }
+.panel ol { margin: 0; padding-left: 1.3em; display: grid; gap: 5px; }
+.panel.call { background: var(--sun-soft); }
+
+.prevent { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 24px; margin: 0; padding: 0; list-style: none; }
+.prevent li { border-left: 4px solid var(--sun); padding: 2px 0 2px 12px; }
+.prevent b { color: var(--deep); display: block; }
+
+footer { background: var(--swim); color: var(--white); }
+footer .wrap { padding-block: 36px 44px; display: grid; gap: 12px; justify-items: center; text-align: center; }
+footer h2 { color: var(--white); }
+.foot-logo { width: 150px; }
+.phone { font-size: clamp(2rem, 7vw, 3rem); font-weight: 700; color: var(--sun); user-select: all; font-variant-numeric: tabular-nums; }
+footer p { color: #E6F1FA; max-width: 60ch; margin-inline: auto; }
+.shop { display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px; width: 100%; max-width: 560px; margin-top: 6px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,.3); }
+.shop div { display: grid; gap: 2px; justify-items: center; }
+.shop span { color: #E6F1FA; }
+.shop .lbl { color: var(--sun); font-weight: 700; }
+.shop .sep { display: none; }
+
+@page { size: A4; margin: 12mm 0 14mm; }
+@page :first { margin-top: 0; }
+@media print {
+  html, body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { font-size: 10pt; line-height: 1.42; background: var(--white); }
+  main { padding-bottom: 6mm; }
+  .wrap { max-width: none; padding-left: 14mm; padding-right: 14mm; }
+  .cover .wrap { padding-block: 10mm 16mm; }
+  .cover h1 { font-size: 34pt; margin-top: 2mm; }
+  .cover p { margin-top: 3mm; }
+  .cover-top .logo { width: 34mm; }
+  section { padding-block: 5mm 0; }
+  section > .wrap { gap: 3.5mm; }
+  h2 { font-size: 18pt; break-after: avoid; }
+  .patch { height: 12mm; }
+  .stain dl { grid-template-columns: 15mm minmax(0, 1fr); gap: 1mm 2.5mm; font-size: 9pt; line-height: 1.35; }
+  .clue { padding: 1.5mm 2.5mm; font-size: 9pt; }
+  .stains, .products, .test, .pair { gap: 3.5mm; }
+  .keep { break-inside: avoid; gap: 3.5mm; }
+  .steps li { padding: 2mm 0; gap: 3.5mm; grid-template-columns: 8mm minmax(0, 1fr); }
+  .steps li::before { width: 7mm; height: 7mm; font-size: 10pt; }
+  .steps .tip { margin-top: 1mm; }
+  th, td { padding: 1.3mm 3mm; }
+  #organic .pair { break-inside: avoid; }
+  .steps { display: block; }
+  .doses th, .doses td { padding: 1.2mm 2mm; }
+  .prevent { gap: 2mm 6mm; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .shop br { display: none; }
+  .shop .sep { display: inline; }
+  .prod-card ul { font-size: 9.5pt; }
+  .stain .body, .test > div, .prod-card, .panel { padding: 3.5mm 4.5mm; gap: 2mm; }
+  .stain, .test > div, .prod-card, .doses, .panel, .safety, .bring, .steps li, tr, .prevent li { break-inside: avoid; }
+  #products .wrap > h2, #products .lede { break-after: avoid; }
+  footer { margin-top: 0; break-inside: avoid; }
+  footer .wrap { padding-block: 5mm; gap: 1.5mm; }
+  .foot-logo { width: 24mm; }
+  .shop { padding-top: 2mm; margin-top: 0; gap: 1.5mm; font-size: 9pt; line-height: 1.35; }
+  footer p { max-width: none; font-size: 9.5pt; }
+  .phone { font-size: 22pt; line-height: 1.1; }
+}
+@media (max-width: 640px) {
+  .stains, .products, .pair, .prevent, .test { grid-template-columns: minmax(0, 1fr); }
+  .prod-card.wide { grid-column: auto; }
+  .chooser th, .chooser td { padding: 8px 5px; font-size: 0.86rem; }
+  .chooser th:first-child, .chooser td:first-child { padding-left: 10px; }
+  .cover .wrap { padding-block: 32px 80px; }
+}
+</style>
+
+<header class="cover">
+  <div class="wrap">
+    <div class="cover-top"><img class="logo" src="{{LOGO}}" alt="Swimart Bli Bli" width="202" height="100"></div>
+    <h1>Stains on your pool?</h1>
+    <p>Most pool stains come from one of two places: metals in the water, or leaves and algae sitting on the surface. Work out which one you have, then treat it the right way.</p>
+    <div class="pill">Test it first, then treat it.</div>
+  </div>
+  <svg class="swoosh" viewBox="0 0 1200 70" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 70 L0 52 C 300 70, 700 10, 1200 0 L1200 70 Z" fill="#F7C935"/>
+    <path d="M0 70 L0 62 C 320 74, 760 30, 1200 20 L1200 70 Z" fill="#FFFFFF"/>
+  </svg>
+</header>
+
+<main>
+<section id="types">
+  <div class="wrap">
+    <h2>What kind of stain is it?</h2>
+    <p class="lede">Colour and location give you a good first guess. The home test on the next page confirms it.</p>
+    <div class="stains">
+      <article class="stain organic">
+        <div class="patch" aria-hidden="true"></div>
+        <div class="body">
+          <h3>Organic</h3>
+          <dl>
+            <dt>Looks like</dt><dd>Brown, tan or green-brown patches, sometimes leaf-shaped. Berries can leave pink or purple marks.</dd>
+            <dt>Found</dt><dd>Under leaves, gumnuts and berries, on steps and the floor.</dd>
+            <dt>Why</dt><dd>Leaves and algae left sitting in the pool release tannins that dye the surface.</dd>
+          </dl>
+          <p class="clue"><b>Clue:</b> chlorine lightens it.</p>
+        </div>
+      </article>
+      <article class="stain iron">
+        <div class="patch" aria-hidden="true"></div>
+        <div class="body">
+          <h3>Iron and manganese</h3>
+          <dl>
+            <dt>Looks like</dt><dd>Rust brown, orange or reddish-brown. Manganese shows as purple to black.</dd>
+            <dt>Found</dt><dd>A brown haze across the surface, or rust spots.</dd>
+            <dt>Why</dt><dd>Bore or tank water, rusting fittings or steel in the concrete, and low pH eating away at metal parts.</dd>
+          </dl>
+          <p class="clue"><b>Clue:</b> vitamin C lightens it.</p>
+        </div>
+      </article>
+      <article class="stain copper">
+        <div class="patch" aria-hidden="true"></div>
+        <div class="body">
+          <h3>Copper</h3>
+          <dl>
+            <dt>Looks like</dt><dd>Blue-green, teal, grey or black. Often blotchy on pebble finishes.</dd>
+            <dt>Found</dt><dd>On the floor and near the return jets.</dd>
+            <dt>Why</dt><dd>Copper ionisers such as Naked pools running too high, pH drifting up, or copper-based algaecides. Low pH can also eat copper parts in older heaters.</dd>
+          </dl>
+          <p class="clue"><b>Clue:</b> vitamin C lightens it.</p>
+        </div>
+      </article>
+      <article class="stain scale">
+        <div class="patch" aria-hidden="true"></div>
+        <div class="body">
+          <h3>Calcium scale</h3>
+          <dl>
+            <dt>Looks like</dt><dd>White or grey crust that feels rough to touch.</dd>
+            <dt>Found</dt><dd>Along the waterline tiles, on pebble and around water features.</dd>
+            <dt>Why</dt><dd>High calcium hardness and pH, made worse by evaporation and heat.</dd>
+          </dl>
+          <p class="clue"><b>Clue:</b> neither test shifts it. It's a deposit, not a stain.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="test">
+  <div class="wrap">
+    <div class="keep">
+    <h2>The two-minute stain test</h2>
+    <p class="lede">You'll need a vitamin C tablet, an old sock and a spoonful of granular chlorine.</p>
+    <div class="test">
+      <div>
+        <h3>Rub vitamin C on it</h3>
+        <p>Hold a vitamin C tablet on the stain for 30 seconds.</p>
+        <p class="result"><b>It lightens:</b> a metal stain, most likely iron or copper.</p>
+      </div>
+      <div>
+        <h3>Try chlorine</h3>
+        <p>Put a spoonful of granular chlorine in a sock and hold it on the stain for 30 seconds.</p>
+        <p class="result"><b>It lightens:</b> an organic stain.</p>
+      </div>
+      <div>
+        <h3>Neither works</h3>
+        <p>It may be calcium scale, a mix of stains, or a surface problem.</p>
+        <p class="result"><b>Next:</b> bring us a photo and we'll take a look.</p>
+      </div>
+    </div>
+    </div>
+    <p class="note">Skip the chlorine test on vinyl liners and coloured or patterned finishes, as it can bleach them.</p>
+    <div class="bring">
+      <h3>Before you treat, bring us a water sample</h3>
+      <p>We'll test pH, alkalinity, calcium, chlorine, iron and copper, look at your photo, and match the right product and dose to your pool. Stain removers are strong acids, so getting the dose right matters.</p>
+    </div>
+  </div>
+</section>
+
+<section id="products">
+  <div class="wrap">
+    <div class="keep">
+    <h2>Our stain range</h2>
+    <p class="lede">We use the Lo-Chlor range in store and on our service runs. Here's which product suits which stain.</p>
+    <div class="tablewrap">
+      <table class="chooser">
+        <thead><tr><th>Product</th><th>Organic</th><th>Iron</th><th>Copper</th><th>Scale</th></tr></thead>
+        <tbody>
+          <tr><td class="prod">Iron Stain Remover</td><td class="no">–</td><td class="yes">Yes</td><td class="no">–</td><td class="no">–</td></tr>
+          <tr><td class="prod">Salt Stain Remover</td><td class="no">–</td><td class="yes">Yes</td><td class="yes">Light stains</td><td class="no">–</td></tr>
+          <tr><td class="prod">Multi Stain Remover</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="yes">Yes</td><td class="no">–</td></tr>
+          <tr><td class="prod">CU Later Part I &amp; II</td><td class="no">–</td><td class="no">–</td><td class="yes">Heavy stains</td><td class="no">–</td></tr>
+          <tr><td class="prod">Stain &amp; Scale Defence</td><td class="no">–</td><td class="yes">Prevents</td><td class="yes">Prevents</td><td class="yes">Yes</td></tr>
+        </tbody>
+      </table>
+    </div>
+    </div>
+    <div class="products">
+      <article class="prod-card">
+        <div class="for">For brown iron stains</div>
+        <h3>Iron Stain Remover</h3>
+        <p>A high-strength acid blend for rust-brown iron staining.</p>
+        <ul>
+          <li>Chlorine below 0.5 ppm, pH 7.2–7.6</li>
+          <li>1 kg per 50,000 L, pump running</li>
+          <li>Run the pump 24 hours, then rebalance</li>
+        </ul>
+      </article>
+      <article class="prod-card">
+        <div class="for">For iron, manganese and lighter copper stains</div>
+        <h3>Salt Stain Remover</h3>
+        <p>Citric acid based. Gentle enough for all surfaces, and our go-to for lighter copper stains too.</p>
+        <ul>
+          <li>Chlorine removed, pH 7.2–7.6</li>
+          <li>1 kg per 50,000 L, sprinkled around the edge</li>
+          <li>Usually clears within 12 hours. Repeat once if needed</li>
+        </ul>
+      </article>
+      <article class="prod-card">
+        <div class="for">When you're not sure, or it's a mix</div>
+        <h3>Multi Stain Remover</h3>
+        <p>Treats metal stains as well as organic ones such as leaf, algae and mould marks.</p>
+        <ul>
+          <li>Chlorine as close to zero as possible</li>
+          <li>1 kg per 50,000 L, as a spot or whole-pool treatment</li>
+          <li>Raise pH slowly afterwards, or the stain can come back</li>
+        </ul>
+      </article>
+      <article class="prod-card">
+        <div class="for">For heavy copper staining</div>
+        <h3>CU Later Part I &amp; II</h3>
+        <p>A two-part treatment. Part I is an oxidiser that primes the stain, and Part II is an acid blend that lifts it.</p>
+        <ul>
+          <li>Chlorine below 1 ppm, pH 7.0</li>
+          <li>Part I: 1 kg per 50,000 L over the stain, pump running</li>
+          <li>Part II: 1 kg per 50,000 L, 5 minutes after the water changes colour</li>
+          <li>Run the pump 24 hours, then rebalance</li>
+        </ul>
+        <p class="tip">Part II is a strong acid and drops pH and alkalinity a long way.</p>
+      </article>
+      <article class="prod-card">
+        <div class="for">Prevention and calcium scale</div>
+        <h3>Stain &amp; Scale Defence</h3>
+        <p>A maintenance treatment that keeps metals and calcium from settling on surfaces, equipment and heaters. Use it after any stain treatment to stop the stain coming back, and monthly to keep scale away.</p>
+        <ul>
+          <li>Start-up dose: 5 L per 50,000 L, spread over as much of the pool as you can</li>
+          <li>Monthly: 1 L per 50,000 L</li>
+          <li>If calcium hardness is above 500 ppm, we'll bring that down first</li>
+        </ul>
+      </article>
+      <div class="doses">
+      <h3>Dose for your pool size</h3>
+          <div class="tablewrap">
+            <table>
+              <thead><tr><th>Pool size</th><th>Stain remover</th><th>Defence start</th><th>Monthly</th></tr></thead>
+              <tbody>
+                <tr><td class="num">10,000 L</td><td class="num">200 g</td><td class="num">1 L</td><td class="num">200 mL</td></tr>
+                <tr><td class="num">20,000 L</td><td class="num">400 g</td><td class="num">2 L</td><td class="num">400 mL</td></tr>
+                <tr><td class="num">30,000 L</td><td class="num">600 g</td><td class="num">3 L</td><td class="num">600 mL</td></tr>
+                <tr><td class="num">40,000 L</td><td class="num">800 g</td><td class="num">4 L</td><td class="num">800 mL</td></tr>
+                <tr><td class="num">50,000 L</td><td class="num">1 kg</td><td class="num">5 L</td><td class="num">1 L</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="note">Doses are scaled from the labels. Always read the label on the pack, and check your dose with us before you treat.</p>
+          </div>
+    </div>
+  </div>
+</section>
+
+<section id="metal">
+  <div class="wrap">
+    <h2>Treating a metal stain</h2>
+    <ol class="steps">
+      <li><div><h3>Confirm the stain and test the water</h3><p>Bring us a photo and a water sample. We'll confirm the stain type, check the balance, and give you the product and dose for your pool.</p></div></li>
+      <li><div><h3>Switch off a copper ioniser</h3><p>If you have a Naked pool or another copper ioniser, switch it off before you start and leave it off until the water is rebalanced.</p></div></li>
+      <li><div><h3>Let the chlorine drop</h3><p>Turn off the salt chlorinator a day or two before treating. Chlorine needs to be below 0.5 ppm for most products, as chlorine fights the stain remover.</p><p class="tip">Short on time? We can supply a chlorine reducer.</p></div></li>
+      <li><div><h3>Set the pH</h3><p>Bring the pH to 7.2–7.6, or down to 7.0 for CU Later.</p></div></li>
+      <li><div><h3>Add the stain remover with the pump running</h3><p>Sprinkle it over the stain or evenly around the pool. On Quartzon, coloured pebble, coloured marble, exposed aggregate or printed vinyl, dissolve it in a bucket of pool water first so it never sits on the surface.</p></div></li>
+      <li><div><h3>Run the pump for 24 hours</h3><p>Keep swimmers out while the treatment works. Brush any stubborn spots to help it along.</p></div></li>
+      <li><div><h3>Rebalance slowly</h3><p>Stain removers drop pH and alkalinity. Raise them a little at a time with buffer, as raising them too fast can cloud the water and put the stain straight back.</p></div></li>
+      <li><div><h3>Add Stain &amp; Scale Defence</h3><p>Once the water is balanced, add the start-up dose to hold remaining metals in the water so they don't settle again.</p></div></li>
+      <li><div><h3>Restart your system</h3><p>Turn the chlorinator back on. If you have a copper ioniser, restart it at a lower output than before and bring us a sample after a week so we can check the copper level.</p></div></li>
+    </ol>
+    <div class="safety">
+      <h3>Handle stain removers safely</h3>
+      <ul>
+        <li>Wear gloves and eye protection.</li>
+        <li>Never mix stain removers with chlorine or other chemicals, and add each one to the pool separately.</li>
+        <li>Store them in their original containers, out of reach of children.</li>
+        <li>Keep swimmers out until the treatment has run and the water is rebalanced.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="organic">
+  <div class="wrap">
+    <div class="pair">
+      <div class="panel organicbox">
+        <h3>Treating an organic stain</h3>
+        <ol>
+          <li>Scoop out leaves and debris, and empty the baskets.</li>
+          <li>Brush the stain hard.</li>
+          <li>Raise the chlorine with a shock dose at dusk.</li>
+          <li>Hold granular chlorine in a sock on stubborn marks, except on vinyl or coloured finishes.</li>
+          <li>Still there after a few days? Try Multi Stain Remover.</li>
+        </ol>
+      </div>
+      <div class="panel copperbox">
+        <h3>Copper and Naked pools</h3>
+        <p>Copper ionisers release a small, controlled amount of copper to keep algae away. When the output is set too high, or pH and alkalinity creep up, that copper drops out of the water and settles on the surface as blue-green, grey or black stains.</p>
+        <ul>
+          <li>Keep pH at the lower end, 7.2–7.4.</li>
+          <li>Run the ioniser at the lowest output that keeps the pool clear.</li>
+          <li>Don't add copper-based algaecides.</li>
+          <li>Bring in a sample monthly so we can check the copper level.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="prevent">
+  <div class="wrap">
+    <h2>Stop stains coming back</h2>
+    <ul class="prevent">
+      <li><b>Keep pH between 7.2 and 7.6</b>High pH drops metals out of the water. Low pH eats metal parts and puts metals into it.</li>
+      <li><b>Use Stain &amp; Scale Defence monthly</b>It holds metals and calcium in the water so they don't settle.</li>
+      <li><b>Test bore and tank water</b>Top-up water from a bore or tank can carry iron and manganese. We'll test it for you.</li>
+      <li><b>Don't let leaves sit</b>Scoop leaves and berries out promptly, and use a cover if trees overhang the pool.</li>
+      <li><b>Watch your copper ioniser</b>Lower the output if copper reads high, and avoid copper algaecides.</li>
+      <li><b>Call us about rust spots that keep returning</b>A rust spot that comes back in the same place can mean steel in the concrete is showing through.</li>
+    </ul>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <h2>Need a hand?</h2>
+    <img class="logo foot-logo" src="{{LOGO}}" alt="Swimart Bli Bli" width="202" height="100">
+    <div class="phone">(07) 5356 9448</div>
+    <p>Call the team at Swimart Bli Bli or drop in with a photo and a water sample. Call us too if a stain is still there after a second treatment, black stains appear, or the water turns cloudy after treating.</p>
+    <div class="shop">
+      <div><span class="lbl">Visit us</span><span>1/311 David Low Way<br><span class="sep">, </span>Bli Bli QLD 4560</span></div>
+      <div><span class="lbl">Shop hours</span><span>Mon–Fri 9:00 am – 4:30 pm<br><span class="sep"> · </span>Sat 8:30 am – 12:30 pm</span></div>
+    </div>
+  </div>
+</footer>

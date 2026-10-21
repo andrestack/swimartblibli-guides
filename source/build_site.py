@@ -1,7 +1,8 @@
 import re, os, shutil
 guides=[('plunge-pool-guide.html','plunge-pool','Plunge-Pool-Welcome-Guide.pdf'),
         ('green-pool-guide.html','green-pool','Green-Pool-Recovery-Guide.pdf'),
-        ('heat-pump-guide.html','heat-pump','Heat-Pump-Owners-Guide.pdf')]
+        ('heat-pump-guide.html','heat-pump','Heat-Pump-Owners-Guide.pdf'),
+        ('stain-guide.html','stains','Pool-Stain-Guide.pdf')]
 navcss='''
 .guide-nav { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 14px; }
 .guide-nav a { color: #FFFFFF; font-weight: 500; text-underline-offset: 3px; min-height: 44px; display: inline-flex; align-items: center; }

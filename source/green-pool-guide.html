@@ -49,6 +49,8 @@ section > .wrap { display: grid; gap: 18px; }
 .shade dl { margin: 6px 0 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 10px; font-size: 0.94rem; }
 .shade dt { color: var(--muted); }
 .shade dd { margin: 0; font-weight: 700; color: var(--deep); font-variant-numeric: tabular-nums; }
+.naked-note { background: #F8E9DF; border-left: 5px solid #B8632F; border-radius: 10px; padding: 12px 16px; font-size: 0.96rem; max-width: 70ch; }
+.naked-note b { color: #8A4520; }
 .dose { background: var(--foam); border-radius: 12px; padding: 14px 16px; font-size: 0.96rem; max-width: 70ch; }
 .dose b { color: var(--deep); }
 
@@ -132,10 +134,15 @@ footer p { color: #E6F1FA; max-width: 60ch; margin-inline: auto; }
   #steps { break-before: page; }
   .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); column-gap: 8mm; }
   .steps li { padding: 3mm 0; }
-  .shade { padding-top: 15mm; }
+  .shade { padding-top: 11mm; }
+  #severity .lede { margin-bottom: -1mm; }
+  .naked-note { padding: 2mm 3.5mm; font-size: 9pt; }
   .cover .wrap { padding-block: 12mm 18mm; }
   .cover p { margin-top: 3mm; }
-  #safety { padding-top: 5mm; }
+  #safety { padding-top: 3mm; }
+  #safety .safety { padding: 3mm 4.5mm; gap: 1.5mm; }
+  #safety .safety ul { gap: 0.8mm; font-size: 9.5pt; }
+  .dose { padding: 2.5mm 3.5mm; }
   #mustard { padding-top: 5mm; }
   .mustard { padding: 5mm; gap: 3.5mm; }
   .treat { grid-template-columns: 22mm minmax(0, 1fr); padding: 4mm; }
@@ -181,6 +188,7 @@ footer p { color: #E6F1FA; max-width: 60ch; margin-inline: auto; }
   <div class="wrap">
     <h2>How green is it?</h2>
     <p class="lede">Look at the deepest part of the pool. How much of the floor you can see tells you how hard to hit it.</p>
+    <p class="naked-note"><b>Naked or copper ioniser pool?</b> Don't follow these steps. Granular chlorine and floc can't be used in your pool. See our Naked pool guide, or call us.</p>
     <div class="scale">
       <article class="shade light">
         <div class="body">

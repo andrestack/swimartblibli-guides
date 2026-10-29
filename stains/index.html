@@ -81,6 +81,13 @@ section > .wrap { display: grid; gap: 18px; }
 .test .result b { color: var(--deep); }
 .naked-note { background: #F8E9DF; border-left: 5px solid #B8632F; border-radius: 10px; padding: 12px 16px; font-size: 0.96rem; max-width: 70ch; }
 .naked-note b { color: #8A4520; }
+.disclaimer { background: var(--alert-soft); border: 2px solid var(--alert); border-radius: 18px; padding: 22px 24px; display: grid; gap: 12px; }
+.disclaimer h2 { color: var(--alert); font-size: clamp(1.35rem, 3.4vw, 1.7rem); }
+.disclaimer .points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
+.disclaimer .point { background: var(--white); border-radius: 12px; padding: 14px 16px; display: grid; gap: 4px; align-content: start; }
+.disclaimer .point b { color: var(--alert); font-size: 1.05rem; line-height: 1.25; }
+.disclaimer .point p { font-size: 0.95rem; }
+.disclaimer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; font-size: 0.96rem; }
 .bring { background: var(--sun-soft); border-radius: 16px; padding: 16px 20px; display: grid; gap: 4px; }
 
 /* Chooser table */
@@ -163,6 +170,13 @@ footer p { color: #E6F1FA; max-width: 60ch; margin-inline: auto; }
   section > .wrap { gap: 3.5mm; }
   h2 { font-size: 18pt; break-after: avoid; }
   .stain { padding: 15mm 2mm 2mm; }
+  .disclaimer { padding: 4mm 5mm; gap: 2.5mm; break-inside: avoid; }
+  .disclaimer h2 { font-size: 14pt; }
+  .disclaimer .points { gap: 3mm; }
+  .disclaimer .point { padding: 2.5mm 3mm; gap: 1mm; }
+  .disclaimer .point p, .disclaimer ul { font-size: 9pt; line-height: 1.35; }
+  .disclaimer ul { gap: 0.8mm; }
+  #before { padding-top: 2mm; }
   .stain .body { padding: 2.5mm 3.5mm; gap: 1.5mm; }
   .stain dl { grid-template-columns: 15mm minmax(0, 1fr); gap: 1mm 2.5mm; font-size: 9pt; line-height: 1.35; }
   .clue { padding: 1.5mm 2.5mm; font-size: 9pt; }
@@ -197,6 +211,8 @@ footer p { color: #E6F1FA; max-width: 60ch; margin-inline: auto; }
 @media (max-width: 640px) {
   .stains, .products, .pair, .prevent, .test { grid-template-columns: minmax(0, 1fr); }
   .prod-card.wide { grid-column: auto; }
+  .disclaimer .points { grid-template-columns: minmax(0, 1fr); }
+  .disclaimer { padding: 18px; }
   .chooser th, .chooser td { padding: 8px 5px; font-size: 0.86rem; }
   .packs img { width: 44px; }
   .chooser th:first-child, .chooser td:first-child { padding-left: 10px; }
@@ -226,6 +242,23 @@ a.phone { text-decoration: none; display: inline-block; }
 </header>
 
 <main>
+<section id="before">
+  <div class="wrap">
+    <div class="disclaimer" role="note">
+      <h2>Please read before treating a stain</h2>
+      <div class="points">
+        <div class="point"><b>It can take 6 to 8 weeks</b><p>Stains usually fade gradually over several weeks of treatment and filtering, not overnight. Some need a second or third round.</p></div>
+        <div class="point"><b>Results can't be guaranteed</b><p>We can't promise any stain will disappear completely. Old stains, and stains set into pebble, Quartzon or aggregate finishes, may only lighten.</p></div>
+        <div class="point"><b>Winter is the best time</b><p>The pool isn't being used, cooler water keeps algae away while chlorine is held low, and the water is much easier to keep in balance.</p></div>
+      </div>
+      <ul>
+        <li>During treatment the chlorine is kept low and the pH adjusted, so the pool can't be swum in until it's rebalanced.</li>
+        <li>A stain can come back if its cause isn't fixed, such as high copper, bore or tank water, or pH drifting out of range.</li>
+        <li>Stain removers are strong acids. Follow the label and check the dose with us first.</li>
+      </ul>
+    </div>
+  </div>
+</section>
 <section id="types">
   <div class="wrap">
     <h2>What kind of stain is it?</h2>
